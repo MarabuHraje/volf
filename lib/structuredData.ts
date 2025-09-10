@@ -1,10 +1,12 @@
+import { absoluteUrl, siteConfig } from './siteConfig'
+
 export function generateOrganizationJSONLD() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Rybářské a chovatelské služby Volf',
-    url: 'https://volf-rybarsky-web.vercel.app',
-    logo: 'https://volf-rybarsky-web.vercel.app/images/logo.png',
+  name: siteConfig.name,
+  url: siteConfig.url,
+  logo: absoluteUrl('/images/logo.png'),
     description: 'Expertní rybářské poradenství, servis výbavy a prémiové vybavení pro rybolov s respektem k přírodě.',
     address: {
       '@type': 'PostalAddress',
@@ -32,8 +34,8 @@ export function generateLocalBusinessJSONLD() {
   return {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: 'Rybářské a chovatelské služby Volf',
-    url: 'https://volf-rybarsky-web.vercel.app',
+  name: siteConfig.name,
+  url: siteConfig.url,
     telephone: '{{PHONE}}',
     email: '{{EMAIL}}',
     address: {
@@ -81,25 +83,25 @@ export function generateBreadcrumbJSONLD() {
         '@type': 'ListItem',
         position: 1,
         name: 'Domů',
-        item: 'https://volf-rybarsky-web.vercel.app'
+        item: siteConfig.url
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'O značce',
-        item: 'https://volf-rybarsky-web.vercel.app#o-znacce'
+        item: absoluteUrl('#o-znacce')
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: 'Služby',
-        item: 'https://volf-rybarsky-web.vercel.app#sluzby'
+        item: absoluteUrl('#sluzby')
       },
       {
         '@type': 'ListItem',
         position: 4,
         name: 'Kontakt',
-        item: 'https://volf-rybarsky-web.vercel.app#kontakt'
+        item: absoluteUrl('#kontakt')
       }
     ]
   }
@@ -109,12 +111,12 @@ export function generateWebSiteJSONLD() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Rybářské a chovatelské služby Volf',
-    url: 'https://volf-rybarsky-web.vercel.app',
+    name: siteConfig.name,
+    url: siteConfig.url,
     description: 'Expertní rybářské poradenství, servis výbavy a prémiové vybavení pro rybolov s respektem k přírodě.',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://volf-rybarsky-web.vercel.app/search?q={search_term_string}',
+      target: absoluteUrl('/search?q={search_term_string}'),
       'query-input': 'required name=search_term_string'
     }
   }
