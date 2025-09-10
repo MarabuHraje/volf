@@ -22,13 +22,37 @@ const config: Config = {
       },
       container: {
         center: true,
-        padding: '1rem',
+        padding: {
+          DEFAULT: '1rem',
+          sm: '1.5rem',
+          md: '2rem',
+          lg: '2.5rem',
+          xl: '3rem',
+        },
         screens: {
           sm: '640px',
           md: '768px', 
           lg: '1024px',
           xl: '1200px',
+          '2xl': '1400px',
         },
+      },
+      screens: {
+        'xs': '475px',
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
+        'xl': '1280px',
+        '2xl': '1536px',
+        '3xl': '1920px',
+        // Mobile-first breakpoints
+        'mobile-s': '320px',
+        'mobile-m': '375px',
+        'mobile-l': '425px',
+        'tablet': '768px',
+        'laptop': '1024px',
+        'laptop-l': '1440px',
+        'desktop': '2560px',
       },
       spacing: {
         '18': '4.5rem',

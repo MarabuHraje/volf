@@ -39,7 +39,7 @@ export default function FAQSection() {
               >
                 <button
                   onClick={() => setOpenId(opened ? null : item.id)}
-                  className="w-full flex items-center justify-between text-left p-5 gap-6 premium-focus"
+                  className="w-full flex items-center justify-between text-left p-5 gap-6 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:ring-offset-2 focus:ring-offset-white rounded-xl transition-all duration-200"
                   aria-expanded={opened}
                 >
                   <span className="font-medium text-dark-forest font-serif text-lg">

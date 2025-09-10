@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerChildren } from '@/lib/motion'
 import { services, type ServiceItem } from '@/data/services'
+import TiltCard from './TiltCard'
 
 // Heroicons jako inline SVG (alternativa k balíčku)
 const icons = {
@@ -39,20 +40,31 @@ function ServiceCard({ service, index }: { service: ServiceItem; index: number }
     <motion.div
       variants={fadeInUp}
       custom={index}
-      className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-500 border border-sand/20 hover:border-copper/40 overflow-hidden"
+      className="relative"
     >
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-copper/5 via-olive/5 to-copper/10" />
-      <div className="flex flex-col items-center text-center relative z-10">
-        <div className="w-16 h-16 bg-copper/10 rounded-xl flex items-center justify-center mb-6 text-copper group-hover:scale-110 transition-transform">
-          {icons[service.icon as keyof typeof icons]}
+      <TiltCard 
+        className="group relative bg-gradient-to-br from-white via-white/95 to-emerald-50/30 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-white/40 hover:border-emerald-200/60 overflow-hidden backdrop-blur-sm"
+        intensity={0.3}
+        scale={1.03}
+        rotationRange={8}
+      >
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br from-emerald-600/10 via-teal-500/5 to-emerald-400/15 rounded-2xl" />
+        
+        {/* Animated glow effect */}
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl opacity-0 group-hover:opacity-30 blur transition-opacity duration-500" />
+        
+        <div className="flex flex-col items-center text-center relative z-10">
+          <div className="w-20 h-20 bg-gradient-to-br from-emerald-100 to-teal-50 rounded-2xl flex items-center justify-center mb-6 text-emerald-700 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg">
+            {icons[service.icon as keyof typeof icons]}
+          </div>
+          <h3 className="text-xl font-serif font-semibold text-dark-forest mb-4 group-hover:text-emerald-700 transition-colors duration-300">
+            {service.title}
+          </h3>
+          <p className="text-deep-moss leading-relaxed group-hover:text-gray-600 transition-colors duration-300">
+            {service.description}
+          </p>
         </div>
-        <h3 className="text-xl font-serif font-semibold text-dark-forest mb-4 group-hover:text-copper transition-colors">
-          {service.title}
-        </h3>
-        <p className="text-deep-moss leading-relaxed">
-          {service.description}
-        </p>
-      </div>
+      </TiltCard>
     </motion.div>
   )
 }
