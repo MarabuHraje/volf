@@ -34,18 +34,17 @@ function useParallax(strength: number = 0.2) {
   return { ref, offset }
 }
 
-export function ParallaxLayer({ strength = 0.2, className = '', children, as = 'div' }: ParallaxLayerProps) {
+export function ParallaxLayer({ strength = 0.2, className = '', children }: ParallaxLayerProps) {
   const { ref, offset } = useParallax(strength)
-  const Comp: any = as
   return (
-    <Comp
+    <div
       ref={ref}
       className={className}
       style={{ transform: `translate3d(0, ${offset}px, 0)` }}
       data-parallax
     >
       {children}
-    </Comp>
+    </div>
   )
 }
 
