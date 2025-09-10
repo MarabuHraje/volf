@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
 import './globals.css'
 import StructuredData from '@/components/StructuredData'
+import AmbientBackground from '@/components/AmbientBackground'
 
 const inter = Inter({ 
   subsets: ['latin', 'latin-ext'],
@@ -77,7 +78,8 @@ export default function RootLayout({
       <head>
         <StructuredData />
       </head>
-      <body className="font-sans">
+      <body className="font-sans antialiased selection:bg-copper/30 bg-dark-forest text-off-white">
+        <AmbientBackground />
         <div className="noise-overlay" />
         {children}
       </body>

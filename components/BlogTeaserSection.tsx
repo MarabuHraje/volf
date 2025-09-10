@@ -1,71 +1,67 @@
-'use client'
+"use client"
 
 import { motion } from 'framer-motion'
 import { blogTeasers } from '@/data/blogTeasers'
+import { fadeInUp, staggerChildren } from '@/lib/motion'
 
 export default function BlogTeaserSection() {
   return (
-    <section id="blog" className="section-padding bg-off-white">
-      <div className="container mx-auto px-4">
+    <section id="blog" className="section-padding relative overflow-hidden bg-gradient-to-b from-deep-moss via-dark-forest to-dark-forest">
+      <div className="blur-orb w-[32rem] h-[32rem] top-10 left-10" />
+      <div className="blur-orb alt w-[36rem] h-[36rem] -bottom-20 right-0" />
+      <div className="container mx-auto px-4 relative">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          variants={fadeInUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-serif text-dark-forest mb-6">
-            Rady a tipy
+          <h2 className="text-3xl md:text-5xl font-serif text-off-white mb-6">
+            Rady & články
           </h2>
-          <p className="text-lg text-deep-moss max-w-2xl mx-auto">
-            Praktické znalosti a zkušenosti z vody přímo od expertů
+          <p className="text-lg text-sand/90 max-w-2xl mx-auto">
+            Postřehy, tipy a inspirace z vody i ze servisu. Praktické know-how pro váš růst.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <motion.div
+          variants={staggerChildren(0.14)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+        >
           {blogTeasers.map((post, index) => (
             <motion.article
               key={post.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group cursor-pointer"
+              variants={fadeInUp}
+              custom={index}
+              className="relative group rounded-2xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 hover:border-copper/60 transition-all duration-500 gradient-border hover:shadow-[0_8px_40px_-10px_rgba(176,122,54,0.35)] cursor-pointer"
             >
-              <div className="aspect-video bg-gradient-to-br from-olive/20 to-deep-moss/20 flex items-center justify-center relative overflow-hidden">
-                {/* Placeholder for actual image */}
-                <div className="text-4xl text-olive/30">
-                  <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                  </svg>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-forest/60 via-transparent to-transparent group-hover:from-dark-forest/70 transition-colors" />
-                
-                {/* Category badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="bg-copper/90 text-off-white px-3 py-1 rounded-full text-sm font-medium">
+              <div className="aspect-video relative overflow-hidden">
+                <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(176,122,54,0.35),rgba(62,89,63,0.25),rgba(15,42,34,0.6))] opacity-80 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[radial-gradient(circle_at_30%_40%,rgba(176,122,54,0.35),transparent_60%)]" />
+                <div className="absolute top-3 left-3">
+                  <span className="bg-copper/90 text-off-white px-3 py-1 rounded-full text-xs font-medium tracking-wide shadow">
                     {post.category}
                   </span>
                 </div>
-
-                {/* Read time */}
-                <div className="absolute bottom-4 right-4">
-                  <span className="bg-dark-forest/70 text-off-white px-2 py-1 rounded text-xs">
+                <div className="absolute bottom-3 right-3">
+                  <span className="bg-dark-forest/70 text-off-white px-2 py-1 rounded text-[11px] font-medium tracking-wide">
                     {post.readTime} min
                   </span>
                 </div>
               </div>
-              
-              <div className="p-6">
-                <h3 className="text-xl font-serif font-semibold text-dark-forest mb-3 group-hover:text-copper transition-colors">
+              <div className="p-6 flex flex-col">
+                <h3 className="text-xl font-serif font-semibold text-off-white mb-3 group-hover:text-copper transition-colors leading-snug">
                   {post.title}
                 </h3>
-                <p className="text-deep-moss leading-relaxed mb-4">
+                <p className="text-sand/90 leading-relaxed mb-5 line-clamp-4 min-h-[5.5rem]">
                   {post.excerpt}
                 </p>
-                
-                <div className="flex items-center text-copper font-medium text-sm">
-                  Přečíst článek
+                <div className="flex items-center text-copper font-medium text-sm mt-auto group/link">
+                  <span className="relative after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:bg-copper/40 after:scale-x-0 group-hover/link:scale-x-100 after:origin-left after:transition-transform after:duration-500">Číst více</span>
                   <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -73,21 +69,6 @@ export default function BlogTeaserSection() {
               </div>
             </motion.article>
           ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <a
-            href="#kontakt"
-            className="inline-flex items-center px-8 py-4 border-2 border-copper text-copper font-medium rounded-lg hover:bg-copper hover:text-off-white transition-colors premium-focus"
-          >
-            Užitečné tipy
-          </a>
         </motion.div>
       </div>
     </section>
