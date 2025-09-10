@@ -1,5 +1,3 @@
-'use client'
-
 import { 
   generateOrganizationJSONLD, 
   generateLocalBusinessJSONLD, 
@@ -9,6 +7,7 @@ import {
 } from '@/lib/structuredData'
 import { faqData } from '@/data/faq'
 
+// Server component – generuje JSON-LD bez potřeby klientského bundlu
 export default function StructuredData() {
   const organizationData = generateOrganizationJSONLD()
   const localBusinessData = generateLocalBusinessJSONLD()
