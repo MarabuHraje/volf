@@ -1,14 +1,18 @@
-import IntroSection from '@/components/IntroSection'
-import AboutSection from '@/components/AboutSection'
-import ServicesSection from '@/components/ServicesSection'
-import BenefitsSection from '@/components/BenefitsSection'
-import EcologySection from '@/components/EcologySection'
-import GearTeaserSection from '@/components/GearTeaserSection'
-import BlogTeaserSection from '@/components/BlogTeaserSection'
-import ContactSection from '@/components/ContactSection'
-import FAQSection from '@/components/FAQSection'
-import PartnersSection from '@/components/PartnersSection'
+import dynamic from 'next/dynamic'
 import Footer from '@/components/Footer'
+import ScrollSectionsPresence from '@/components/ScrollSectionsPresence'
+
+// Lazy loaded sections (improves initial payload)
+const IntroSection = dynamic(() => import('@/components/IntroSection'), { ssr: false })
+const AboutSection = dynamic(() => import('@/components/AboutSection'))
+const ServicesSection = dynamic(() => import('@/components/ServicesSection'))
+const BenefitsSection = dynamic(() => import('@/components/BenefitsSection'))
+const EcologySection = dynamic(() => import('@/components/EcologySection'))
+const GearTeaserSection = dynamic(() => import('@/components/GearTeaserSection'))
+const BlogTeaserSection = dynamic(() => import('@/components/BlogTeaserSection'))
+const PartnersSection = dynamic(() => import('@/components/PartnersSection'))
+const FAQSection = dynamic(() => import('@/components/FAQSection'))
+const ContactSection = dynamic(() => import('@/components/ContactSection'))
 
 export default function Home() {
   // Nastavení pro zobrazení výbavy sekce - zde lze vypnout
@@ -16,17 +20,19 @@ export default function Home() {
 
   return (
     <main className="relative">
-      <IntroSection />
-      <AboutSection />
-      <ServicesSection />
-      <BenefitsSection />
-      <EcologySection />
-      <GearTeaserSection enableGearTeaser={enableGearTeaser} />
-      <BlogTeaserSection />
-  <PartnersSection />
-  <FAQSection />
-  <ContactSection />
-      <Footer />
+      <ScrollSectionsPresence>
+        <div id="intro" data-scroll-section><IntroSection /></div>
+        <section id="o-znacce" data-scroll-section><AboutSection /></section>
+        <section id="sluzby" data-scroll-section><ServicesSection /></section>
+        <section id="proc-volf" data-scroll-section><BenefitsSection /></section>
+        <section id="ekologie" data-scroll-section><EcologySection /></section>
+        <section id="vybava" data-scroll-section><GearTeaserSection enableGearTeaser={enableGearTeaser} /></section>
+        <section id="blog" data-scroll-section><BlogTeaserSection /></section>
+        <section id="partneri" data-scroll-section><PartnersSection /></section>
+        <section id="faq" data-scroll-section><FAQSection /></section>
+        <section id="kontakt" data-scroll-section><ContactSection /></section>
+        <Footer />
+      </ScrollSectionsPresence>
     </main>
   )
 }

@@ -3,6 +3,8 @@ import { Inter, Cormorant_Garamond } from 'next/font/google'
 import './globals.css'
 import StructuredData from '@/components/StructuredData'
 import AmbientBackground from '@/components/AmbientBackground'
+import { ThemeProvider } from '@/components/ThemeProvider'
+import dynamic from 'next/dynamic'
 
 const inter = Inter({ 
   subsets: ['latin', 'latin-ext'],
@@ -79,9 +81,16 @@ export default function RootLayout({
         <StructuredData />
       </head>
       <body className="font-sans antialiased selection:bg-copper/30 bg-dark-forest text-off-white">
-        <AmbientBackground />
-        <div className="noise-overlay" />
-        {children}
+        <ThemeProvider>
+          <AmbientBackground />
+          {/** Ripple click efekt */}
+          {(() => {
+            const Ripple = dynamic(() => import('@/components/RippleLayer'), { ssr: false })
+            return <Ripple />
+          })()}
+          <div className="noise-overlay" />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

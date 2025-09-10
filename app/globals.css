@@ -24,6 +24,32 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  /* Ripple layer */
+  .ripple-layer {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: 50;
+  }
+
+  .ripple-dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0.05));
+    mix-blend-mode: overlay;
+    animation: rippleExpand 900ms cubic-bezier(.22,.61,.36,1) forwards;
+    will-change: transform, opacity;
+  }
+
+  @keyframes rippleExpand {
+    0% { transform: translate(-50%, -50%) scale(.2); opacity: .9; }
+    60% { opacity: .5; }
+    100% { transform: translate(-50%, -50%) scale(8); opacity: 0; }
+  }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;

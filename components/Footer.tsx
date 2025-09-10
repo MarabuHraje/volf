@@ -1,8 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useTheme } from './ThemeProvider'
 
 export default function Footer() {
+  const { theme, toggle } = useTheme()
   return (
     <footer className="bg-dark-forest text-sand py-16">
       <div className="container mx-auto px-4">
@@ -114,13 +116,16 @@ export default function Footer() {
           <div className="mb-4 md:mb-0">
             <p>&copy; 2024 Rybářské a chovatelské služby Volf. Všechna práva vyhrazena.</p>
           </div>
-          <div className="flex space-x-6">
+          <div className="flex space-x-6 items-center">
             <a href="#" className="hover:text-copper transition-colors">
               Ochrana osobních údajů
             </a>
             <a href="#" className="hover:text-copper transition-colors">
               Obchodní podmínky  
             </a>
+            <button onClick={toggle} className="text-xs px-3 py-1 rounded-md bg-sand/10 hover:bg-sand/20 transition-colors border border-sand/20">
+              {theme === 'dark' ? 'Světlý režim' : 'Tmavý režim'}
+            </button>
           </div>
         </motion.div>
       </div>
