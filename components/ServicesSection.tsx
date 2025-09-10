@@ -59,7 +59,9 @@ function ServiceCard({ service, index }: { service: ServiceItem; index: number }
 
 export default function ServicesSection() {
   return (
-    <section id="sluzby" className="section-padding bg-gradient-to-b from-sand/10 to-off-white">
+    <section id="sluzby" className="section-padding bg-gradient-to-b from-sand/10 to-off-white relative overflow-hidden">
+      <div className="blur-orb w-72 h-72 -top-10 -left-10" />
+      <div className="blur-orb alt w-80 h-80 bottom-0 -right-10" />
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -95,12 +97,7 @@ export default function ServicesSection() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <a
-            href="#kontakt"
-            className="inline-flex items-center px-8 py-4 bg-copper text-off-white font-medium rounded-lg hover:bg-copper/90 transition-colors premium-focus"
-          >
-            Domluvit konzultaci
-          </a>
+          <a href="#kontakt" className="btn-primary">Domluvit konzultaci</a>
         </motion.div>
       </div>
     </section>

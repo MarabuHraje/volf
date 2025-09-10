@@ -38,7 +38,7 @@ export default function PartnersSection() {
               key={p.id}
               variants={fadeInUp}
               custom={i}
-              className="relative group aspect-[3/2] flex items-center justify-center bg-white rounded-xl border border-sand/40 overflow-hidden"
+              className="relative group aspect-[3/2] flex items-center justify-center bg-white/60 backdrop-blur-sm rounded-xl border border-sand/40 overflow-hidden gradient-border"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-olive/0 via-copper/0 to-copper/0 group-hover:from-olive/5 group-hover:via-copper/10 group-hover:to-copper/5 transition-colors" />
               <span className="text-sm font-medium text-deep-moss/70 group-hover:text-deep-moss tracking-wide">

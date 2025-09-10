@@ -70,7 +70,7 @@ export default function IntroSection() {
         ))}
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 text-center">
+  <div className="relative z-10 container mx-auto px-4 text-center">
         <motion.div
           variants={staggerChildren(0.15)}
           initial="hidden"
@@ -91,21 +91,14 @@ export default function IntroSection() {
             Expertní poradenství a prémiová výbava pro váš úspěch
           </motion.p>
           <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-5 justify-center items-center"
             variants={fadeInUp}
             custom={2}
           >
-            <a
-              href="#sluzby"
-              className="relative inline-flex items-center px-10 py-4 bg-copper text-off-white font-medium rounded-lg hover:bg-copper/90 transition-colors premium-focus overflow-hidden group"
-            >
-              <span className="absolute inset-0 bg-gradient-to-r from-copper/0 via-off-white/20 to-copper/0 translate-x-[-120%] group-hover:translate-x-[120%] transition-transform duration-700" />
-              <span className="relative">Naše služby</span>
+            <a href="#sluzby" className="btn-primary">
+              <span>Naše služby</span>
             </a>
-            <a
-              href="#kontakt"
-              className="relative inline-flex items-center px-10 py-4 border-2 border-sand/60 text-sand font-medium rounded-lg hover:bg-sand hover:text-dark-forest transition-colors premium-focus"
-            >
+            <a href="#kontakt" className="btn-outline">
               Napište nám
             </a>
           </motion.div>

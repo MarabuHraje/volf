@@ -40,6 +40,8 @@ const icons = {
 export default function BenefitsSection() {
   return (
     <section id="proc-volf" className="section-padding bg-dark-forest relative overflow-hidden">
+      <div className="blur-orb w-80 h-80 -top-10 -right-10" />
+      <div className="blur-orb alt w-72 h-72 bottom-0 -left-10" />
       {/* Background elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-[url('/images/water-texture.jpg')] bg-cover bg-center" />
@@ -73,7 +75,7 @@ export default function BenefitsSection() {
               key={benefit.id}
               variants={fadeInUp}
               custom={index}
-              className="group relative bg-deep-moss/25 backdrop-blur-sm rounded-xl p-6 border border-copper/15 hover:border-copper/50 transition-colors overflow-hidden"
+              className="group relative bg-deep-moss/25 backdrop-blur-sm rounded-xl p-6 border border-copper/15 hover:border-copper/50 transition-colors overflow-hidden gradient-border"
             >
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-copper/10 via-transparent to-olive/10" />
               <div className="flex items-start space-x-4 relative z-10">

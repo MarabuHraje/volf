@@ -35,7 +35,7 @@ export default function FAQSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="border border-sand/40 rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow"
+                className="border border-sand/40 rounded-xl bg-white/80 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow gradient-border"
               >
                 <button
                   onClick={() => setOpenId(opened ? null : item.id)}

@@ -55,11 +55,33 @@ const config: Config = {
             transform: 'translateY(0)'
           },
         },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' }
+        },
+        'pulse-glow': {
+          '0%': { boxShadow: '0 0 0 0 rgba(176,122,54,0.45)' },
+          '70%': { boxShadow: '0 0 0 14px rgba(176,122,54,0)' },
+          '100%': { boxShadow: '0 0 0 0 rgba(176,122,54,0)' }
+        },
+        ripple: {
+          '0%': { transform: 'scale(0.85)', opacity: '0.6' },
+          '70%': { transform: 'scale(1.15)', opacity: '0' },
+          '100%': { transform: 'scale(1.15)', opacity: '0' }
+        },
+        gradientX: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' }
+        }
       },
       animation: {
         'ambient-float': 'ambientFloat 6s ease-in-out infinite',
         'wave-flow': 'waveFlow 3s ease-in-out infinite',
         'fade-in-up': 'fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+        shimmer: 'shimmer 3.5s linear infinite',
+        'pulse-glow': 'pulse-glow 4s ease-in-out infinite',
+        ripple: 'ripple 3.4s ease-out infinite',
+        'gradient-x': 'gradientX 8s ease-in-out infinite'
       },
       transitionTimingFunction: {
         'premium': 'cubic-bezier(0.16, 1, 0.3, 1)',

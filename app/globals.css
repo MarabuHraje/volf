@@ -50,6 +50,54 @@
   .section-padding {
     @apply py-16 md:py-24 lg:py-32;
   }
+
+  /* Glass / gradient helpers */
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_0_0_1px_rgba(255,255,255,0.04)] rounded-2xl;
+  }
+  .gradient-accent {
+    background: linear-gradient(90deg, rgba(176,122,54,0.15), rgba(62,89,63,0.15));
+  }
+  .gradient-border {
+    position: relative;
+  }
+  .gradient-border:before {
+    content: '';
+    position: absolute; inset: 0; padding: 1px; border-radius: inherit;
+    background: linear-gradient(120deg, rgba(176,122,54,0.6), rgba(201,191,175,0.3), rgba(62,89,63,0.6));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Button enhancements */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center px-8 py-4 rounded-xl font-medium text-off-white overflow-hidden premium-focus bg-copper transition-all duration-300;
+  }
+  .btn-primary:hover { @apply bg-copper/90; }
+  .btn-primary:after {
+    content: ''; position: absolute; inset: 0; background: linear-gradient(110deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 45%, rgba(255,255,255,0) 90%);
+    transform: translateX(-120%); transition: transform 0.9s cubic-bezier(0.16,1,0.3,1);
+  }
+  .btn-primary:hover:after { transform: translateX(120%); }
+
+  .btn-outline {
+    @apply relative inline-flex items-center justify-center px-8 py-4 rounded-xl font-medium text-sand border-2 border-sand/60 premium-focus transition-colors duration-300 overflow-hidden;
+  }
+  .btn-outline:hover { @apply bg-sand text-dark-forest; }
+
+  /* Decor shapes */
+  .blur-orb {
+    position: absolute; border-radius: 9999px; filter: blur(40px); opacity: 0.35;
+    background: radial-gradient(circle at 30% 30%, rgba(176,122,54,0.55), rgba(15,42,34,0));
+    pointer-events: none;
+  }
+  .blur-orb.alt {
+    background: radial-gradient(circle at 70% 60%, rgba(62,89,63,0.6), rgba(15,42,34,0));
+  }
+  .section-divider {
+    @apply relative h-px w-full my-20; background: linear-gradient(90deg, rgba(176,122,54,0), rgba(176,122,54,0.5), rgba(176,122,54,0));
+  }
 }
 
 @layer utilities {
