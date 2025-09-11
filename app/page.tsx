@@ -15,7 +15,6 @@ const FAQSection = dynamic(() => import('@/components/FAQSection'))
 const ContactSection = dynamic(() => import('@/components/ContactSection'))
 const GallerySection = dynamic(() => import('@/components/GallerySection'))
 const ReviewsSection = dynamic(() => import('@/components/ReviewsSection'))
-const ThreeShowcase = dynamic(() => import('@/components/ThreeShowcase'), { ssr: false })
 const VisitUsSection = dynamic(() => import('@/components/VisitUsSection'))
 
 export default function Home() {
@@ -26,7 +25,7 @@ export default function Home() {
     <main className="relative">
       <ScrollSectionsPresence>
         <div id="intro" data-scroll-section><IntroSection /></div>
-  <section id="ukazka-3d" data-scroll-section><ThreeShowcase /></section>
+  {/* 3D ukázka byla odstraněna ze stránky na přání */}
   <section id="o-znacce" data-scroll-section><AboutSection /></section>
         <section id="sluzby" data-scroll-section><ServicesSection /></section>
         <section id="proc-volf" data-scroll-section><BenefitsSection /></section>

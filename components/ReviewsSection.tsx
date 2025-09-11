@@ -20,22 +20,25 @@ export default function ReviewsSection() {
     })()
   }, [])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (formData.name && formData.comment) {
-      createReview({
-        name: formData.name,
-        rating: formData.rating,
-        comment: formData.comment,
-        email: formData.email
-      }).then(async () => {
-        const all = await fetchReviews()
-        setReviews(latest(all))
-        setStats(computeReviewStats(all))
-      })
-      setFormData({ name: '', rating: 5, comment: '', email: '' })
-      setShowForm(false)
-    }
+    if (!formData.name || !formData.comment) return
+    // Uloží na server (JSON soubor přes API) a hned zobrazí na stránce
+    const saved = await createReview({
+      name: formData.name,
+      rating: formData.rating,
+      comment: formData.comment,
+      email: formData.email
+    })
+    // Přepnout na zobrazení všech a přidat novou recenzi
+    setShowAll(true)
+    setReviews((prev) => [saved, ...prev])
+    // Přepočítat statistiky z aktuálních dat na serveru
+    const all = await fetchReviews()
+    setReviews(all)
+    setStats(computeReviewStats(all))
+    setFormData({ name: '', rating: 5, comment: '', email: '' })
+    setShowForm(false)
   }
 
   const loadAllReviews = async () => {
