@@ -37,7 +37,7 @@ export default function Header() {
         </Link>
 
         {/* Navigation */}
-        <nav className="hidden md:flex items-center gap-2">
+        <nav className="hidden md:flex items-center gap-2" aria-label="Hlavní navigace">
           {navItems.map((item) => (
             <motion.a
               key={item.href}
@@ -47,7 +47,14 @@ export default function Header() {
               transition={{ type: 'spring', stiffness: 400, damping: 20 }}
               className="px-3 py-2 rounded-lg text-deep-moss hover:text-dark-forest hover:bg-sand/30 premium-focus"
             >
-              {item.label}
+              <span className="inline-flex items-center gap-2">
+                {item.label}
+                {item.href === '#vybava' && (
+                  <span className="text-[10px] leading-none px-2 py-1 rounded-full bg-sand/70 text-deep-moss/90 border border-sand/80">
+                    e‑shop ve vývoji
+                  </span>
+                )}
+              </span>
             </motion.a>
           ))}
         </nav>

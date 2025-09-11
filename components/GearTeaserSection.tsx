@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { gearCategories } from '@/data/gearCategories'
+import PlaceholderSvg from './PlaceholderSvg'
 
 interface GearTeaserSectionProps {
   enableGearTeaser?: boolean
@@ -26,6 +27,10 @@ export default function GearTeaserSection({ enableGearTeaser = true }: GearTease
           <p className="text-lg text-deep-moss max-w-2xl mx-auto">
             Náhled našeho krámku a sortimentu pro všechny styly rybolovu
           </p>
+          <p className="mt-3 inline-flex items-center gap-2 text-sm text-deep-moss/80 bg-sand/50 px-3 py-1 rounded-full">
+            <span className="inline-block w-2 h-2 rounded-full bg-copper animate-pulse" aria-hidden />
+            E‑shop je v procesu příprav a brzy bude spuštěn
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -36,25 +41,21 @@ export default function GearTeaserSection({ enableGearTeaser = true }: GearTease
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
+              className="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col"
             >
-              <div className="aspect-video bg-gradient-to-br from-olive/20 to-deep-moss/20 flex items-center justify-center">
-                {/* Placeholder for actual image */}
-                <div className="text-4xl text-olive/30">
-                  <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-forest/60 via-transparent to-transparent" />
+              <div className="aspect-video relative bg-sand/20">
+                <PlaceholderSvg className="w-full h-full object-cover" aspect="video" label={category.title} />
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-forest/50 via-transparent to-transparent" />
               </div>
               
-              <div className="p-6">
+              <div className="p-6 flex-1 flex flex-col">
                 <h3 className="text-xl font-serif font-semibold text-dark-forest mb-3">
                   {category.title}
                 </h3>
-                <p className="text-deep-moss leading-relaxed">
+                <p className="text-deep-moss leading-relaxed line-clamp-4">
                   {category.description}
                 </p>
+                <div className="mt-4 text-sm text-deep-moss/70">Detail brzy doplníme.</div>
               </div>
             </motion.div>
           ))}

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter, Cormorant_Garamond } from 'next/font/google'
 import './globals.css'
 import StructuredData from '@/components/StructuredData'
@@ -71,6 +71,10 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport: Viewport = {
+  themeColor: '#0f2e1e',
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -84,7 +88,16 @@ export default function RootLayout({
   <body className="font-sans antialiased selection:bg-copper/30 bg-off-white text-dark-forest">
         <ThemeProvider>
           <AmbientBackground />
+          {/* Skip link pro přístupnost */}
+          <a href="#sluzby" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:px-3 focus:py-2 focus:bg-off-white focus:text-dark-forest focus:rounded focus:shadow">
+            Přeskočit na obsah
+          </a>
           <Header />
+          {/** Oznámení o stavu e‑shopu */}
+          {(() => {
+            const AnnouncementBar = dynamic(() => import('@/components/AnnouncementBar'), { ssr: false })
+            return <AnnouncementBar />
+          })()}
           {/** Ripple click efekt */}
           {(() => {
             const Ripple = dynamic(() => import('@/components/RippleLayer'), { ssr: false })

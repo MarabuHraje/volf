@@ -32,14 +32,14 @@ export default function BlogTeaserSection() {
           viewport={{ once: true, amount: 0.2 }}
           className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"
         >
-          {blogTeasers.map((post, index) => (
+      {blogTeasers.map((post, index) => (
             <motion.article
               key={post.id}
               variants={fadeInUp}
               custom={index}
-              className="relative group rounded-2xl overflow-hidden bg-white border border-sand/50 hover:border-copper/60 transition-all duration-500 hover:shadow-[0_8px_40px_-10px_rgba(176,122,54,0.35)] cursor-pointer"
+        className="relative group rounded-2xl overflow-hidden bg-white border border-sand/50 hover:border-copper/60 transition-all duration-500 hover:shadow-[0_8px_40px_-10px_rgba(176,122,54,0.35)] cursor-pointer flex flex-col"
             >
-              <div className="aspect-video relative overflow-hidden">
+        <div className="aspect-video relative overflow-hidden bg-sand/20">
                 <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(176,122,54,0.35),rgba(62,89,63,0.25),rgba(15,42,34,0.6))] opacity-80 group-hover:opacity-100 transition-opacity" />
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[radial-gradient(circle_at_30%_40%,rgba(176,122,54,0.35),transparent_60%)]" />
                 <div className="absolute top-3 left-3">
@@ -53,7 +53,7 @@ export default function BlogTeaserSection() {
                   </span>
                 </div>
               </div>
-              <div className="p-6 flex flex-col">
+        <div className="p-6 flex flex-col flex-1">
                 <h3 className="text-xl font-serif font-semibold text-dark-forest mb-3 group-hover:text-copper transition-colors leading-snug">
                   {post.title}
                 </h3>

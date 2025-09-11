@@ -40,10 +40,10 @@ function ServiceCard({ service, index }: { service: ServiceItem; index: number }
     <motion.div
       variants={fadeInUp}
       custom={index}
-      className="relative"
+      className="relative h-full"
     >
       <TiltCard 
-        className="group relative bg-gradient-to-br from-white via-white/95 to-emerald-50/30 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-white/40 hover:border-emerald-200/60 overflow-hidden backdrop-blur-sm"
+        className="group relative bg-gradient-to-br from-white via-white/95 to-emerald-50/30 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-white/40 hover:border-emerald-200/60 overflow-hidden backdrop-blur-sm h-full"
         intensity={0.3}
         scale={1.03}
         rotationRange={8}
@@ -71,7 +71,7 @@ function ServiceCard({ service, index }: { service: ServiceItem; index: number }
 
 export default function ServicesSection() {
   return (
-  <section id="sluzby" className="section-padding bg-sand/10 relative overflow-hidden">
+  <section id="sluzby" className="section-padding bg-sand/10 relative overflow-hidden" aria-labelledby="sluzby-heading">
       <div className="blur-orb w-72 h-72 -top-10 -left-10" />
       <div className="blur-orb alt w-80 h-80 bottom-0 -right-10" />
       <div className="container mx-auto px-4">
@@ -82,7 +82,7 @@ export default function ServicesSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-serif text-dark-forest mb-6">
+          <h2 id="sluzby-heading" className="text-3xl md:text-5xl font-serif text-dark-forest mb-6">
             Naše služby
           </h2>
           <p className="text-lg text-deep-moss max-w-2xl mx-auto">

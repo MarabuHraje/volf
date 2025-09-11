@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from 'framer-motion'
+import PlaceholderSvg from './PlaceholderSvg'
 
 // Simple static gallery; images can be added to public/images/gallery/
 const images = [
@@ -33,17 +34,7 @@ export default function GallerySection() {
               className="block group overflow-hidden rounded-xl bg-white shadow hover:shadow-md border border-sand/50"
             >
               <div className="aspect-[4/3] bg-sand/30 relative">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  width="800"
-                  height="600"
-                  loading="lazy"
-                  decoding="async"
-                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 400px"
-                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-300"
-                />
+                <PlaceholderSvg className="w-full h-full" aspect="landscape" label={img.alt} />
               </div>
             </motion.a>
           ))}
