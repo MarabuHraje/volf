@@ -11,6 +11,8 @@ export default function ReviewsSection() {
   const [showAll, setShowAll] = useState(false)
   const [showForm, setShowForm] = useState(false)
   const [formData, setFormData] = useState({ name: '', rating: 5, comment: '', email: '' })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
   useEffect(() => {
     (async () => {
@@ -22,23 +24,31 @@ export default function ReviewsSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setErrorMsg(null)
     if (!formData.name || !formData.comment) return
-    // Uloží na server (JSON soubor přes API) a hned zobrazí na stránce
-    const saved = await createReview({
-      name: formData.name,
-      rating: formData.rating,
-      comment: formData.comment,
-      email: formData.email
-    })
-    // Přepnout na zobrazení všech a přidat novou recenzi
-    setShowAll(true)
-    setReviews((prev) => [saved, ...prev])
-    // Přepočítat statistiky z aktuálních dat na serveru
-    const all = await fetchReviews()
-    setReviews(all)
-    setStats(computeReviewStats(all))
-    setFormData({ name: '', rating: 5, comment: '', email: '' })
-    setShowForm(false)
+    setIsSubmitting(true)
+    try {
+      // Uloží na server (JSON soubor přes API) a hned zobrazí na stránce
+      const saved = await createReview({
+        name: formData.name,
+        rating: formData.rating,
+        comment: formData.comment,
+        email: formData.email
+      })
+      // Přepnout na zobrazení všech a přidat novou recenzi
+      setShowAll(true)
+      setReviews((prev) => [saved, ...prev])
+      // Přepočítat statistiky z aktuálních dat na serveru
+      const all = await fetchReviews()
+      setReviews(all)
+      setStats(computeReviewStats(all))
+      setFormData({ name: '', rating: 5, comment: '', email: '' })
+      setShowForm(false)
+    } catch (err) {
+      setErrorMsg('Odeslání recenze se nepodařilo. Zkuste to prosím znovu za chvíli.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const loadAllReviews = async () => {
@@ -140,6 +150,11 @@ export default function ReviewsSection() {
                   required
                 />
               </div>
+              {errorMsg && (
+                <div className="text-red-600 text-sm bg-red-50 border border-red-200 px-3 py-2 rounded">
+                  {errorMsg}
+                </div>
+              )}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Hodnocení *</label>
                 <div className="flex gap-2">
@@ -170,9 +185,10 @@ export default function ReviewsSection() {
               <div className="flex gap-4">
                 <button
                   type="submit"
-                  className="bg-copper text-white px-6 py-2 rounded-lg hover:bg-copper/90"
+                  disabled={isSubmitting}
+                  className="bg-copper text-white px-6 py-2 rounded-lg hover:bg-copper/90 disabled:opacity-60"
                 >
-                  Odeslat recenzi
+                  {isSubmitting ? 'Odesílám…' : 'Odeslat recenzi'}
                 </button>
                 <button
                   type="button"

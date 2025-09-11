@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { promises as fs } from 'fs'
 import path from 'path'
+import os from 'os'
+
+export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
 
 const PRIMARY_DIR = path.join(process.cwd(), 'data')
-const FALLBACK_DIR = process.env.VERCEL ? path.join('/tmp', 'volf-data') : PRIMARY_DIR
+const TMP_DIR = path.join(os.tmpdir(), 'volf-data')
 const FILE_NAME = 'reviews.json'
 
 async function pathExists(p: string) {
@@ -16,8 +20,9 @@ async function ensureDir(dir: string) {
 
 async function readFirstAvailable(): Promise<{ filePath: string, data: any[] }> {
   const primaryPath = path.join(PRIMARY_DIR, FILE_NAME)
-  const fallbackPath = path.join(FALLBACK_DIR, FILE_NAME)
-  const candidates = [primaryPath, fallbackPath]
+  const fallbackPath = path.join(TMP_DIR, FILE_NAME)
+  // Preferuj fallback (/tmp), pokud existuje a obsahuje novější data
+  const candidates = [fallbackPath, primaryPath]
   for (const p of candidates) {
     if (await pathExists(p)) {
       const buf = await fs.readFile(p, 'utf-8')
@@ -30,8 +35,8 @@ async function readFirstAvailable(): Promise<{ filePath: string, data: any[] }> 
     { id: '2', name: 'Petra Svobodová', rating: 4, comment: 'Rychlý servis navijáku, rozumné ceny. Určitě doporučuji!', date: '2024-08-20' },
     { id: '3', name: 'Karel Dvořák', rating: 5, comment: 'Pomohli mi s nastavením chovu kaprů. Odbornost na vysoké úrovni.', date: '2024-09-01' }
   ]
-  await ensureDir(FALLBACK_DIR)
-  const target = path.join(FALLBACK_DIR, FILE_NAME)
+  await ensureDir(TMP_DIR)
+  const target = path.join(TMP_DIR, FILE_NAME)
   await fs.writeFile(target, JSON.stringify(seed, null, 2), 'utf-8')
   return { filePath: target, data: seed }
 }
@@ -44,8 +49,8 @@ async function writeWithFallback(json: any[]): Promise<string> {
     return primaryPath
   } catch (err: any) {
     // likely read-only FS (e.g., Vercel). Fallback to /tmp
-    const fallbackPath = path.join(FALLBACK_DIR, FILE_NAME)
-    await ensureDir(FALLBACK_DIR)
+    const fallbackPath = path.join(TMP_DIR, FILE_NAME)
+    await ensureDir(TMP_DIR)
     await fs.writeFile(fallbackPath, JSON.stringify(json, null, 2), 'utf-8')
     return fallbackPath
   }
@@ -53,7 +58,10 @@ async function writeWithFallback(json: any[]): Promise<string> {
 
 export async function GET() {
   const { data } = await readFirstAvailable()
-  return NextResponse.json(data)
+  return new NextResponse(JSON.stringify(data), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }
+  })
 }
 
 export async function POST(req: NextRequest) {
@@ -70,8 +78,15 @@ export async function POST(req: NextRequest) {
     }
     const next = [newReview, ...data]
     await writeWithFallback(next)
-    return NextResponse.json(newReview, { status: 201 })
+    return new NextResponse(JSON.stringify(newReview), {
+      status: 201,
+      headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }
+    })
   } catch (e) {
-    return NextResponse.json({ error: 'Uložení recenze selhalo' }, { status: 500 })
+    console.error('Review POST failed:', e)
+    return new NextResponse(JSON.stringify({ error: 'Uložení recenze selhalo' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }
+    })
   }
 }
