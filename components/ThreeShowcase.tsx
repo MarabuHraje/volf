@@ -1,107 +1,152 @@
 "use client"
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import * as THREE from 'three'
 
-// Lightweight canvas-based pseudo-3D rods using simple transforms, no heavy deps.
-// Placeholder shapes resemble rods and reels for visual effect without large bundles.
 export default function ThreeShowcase() {
-  const ref = useRef<HTMLCanvasElement>(null!)
+  const mountRef = useRef<HTMLDivElement>(null)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-  const canvas = ref.current
-  if (!canvas) return
-  const dpr = Math.min(window.devicePixelRatio || 1, 2)
-  const ctx = canvas.getContext('2d')!
+    if (!mountRef.current) return
+    
+    const mount = mountRef.current
+    const scene = new THREE.Scene()
+    const camera = new THREE.PerspectiveCamera(75, mount.clientWidth / mount.clientHeight, 0.1, 1000)
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+    
+    renderer.setSize(mount.clientWidth, mount.clientHeight)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    renderer.shadowMap.enabled = true
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap
+    mount.appendChild(renderer.domElement)
+    
+    // Osvětlení
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6)
+    scene.add(ambientLight)
+    
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8)
+    directionalLight.position.set(10, 10, 5)
+    directionalLight.castShadow = true
+    scene.add(directionalLight)
+    
+    // Skupina pro prut
+    const rodGroup = new THREE.Group()
 
-    function resize() {
-  const rect = canvas.getBoundingClientRect()
-  const width = rect.width
-  const height = Math.round(width * 0.35)
-  canvas.width = Math.floor(width * dpr)
-  canvas.height = Math.floor(height * dpr)
-  canvas.style.height = `${height}px`
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      draw()
+    // Materiály
+    const rodMaterial = new THREE.MeshPhongMaterial({ 
+      color: 0x2d4a3d,
+      shininess: 100 
+    })
+    const reelMaterial = new THREE.MeshPhongMaterial({ 
+      color: 0xb07a36,
+      shininess: 150 
+    })
+    
+    // Prut
+    const rodGeometry = new THREE.CylinderGeometry(0.05, 0.08, 8, 16)
+    const rod = new THREE.Mesh(rodGeometry, rodMaterial)
+    rod.rotation.z = Math.PI / 2
+    rod.castShadow = true
+    rod.receiveShadow = true
+    rodGroup.add(rod)
+    
+    // Navijak
+    const reelGeometry = new THREE.CylinderGeometry(0.3, 0.3, 0.4, 16)
+    const reel = new THREE.Mesh(reelGeometry, reelMaterial)
+    reel.position.set(-2, 0, 0)
+    reel.rotation.x = Math.PI / 2
+    reel.castShadow = true
+    rodGroup.add(reel)
+    
+    // Očka na prutu
+    for (let j = 0; j < 6; j++) {
+      const eyeGeometry = new THREE.TorusGeometry(0.12, 0.02, 8, 16)
+      const eyeMaterial = new THREE.MeshPhongMaterial({ color: 0x333333 })
+      const eye = new THREE.Mesh(eyeGeometry, eyeMaterial)
+      eye.position.set(1 + j * 1.2, 0, 0)
+      eye.rotation.y = Math.PI / 2
+      rodGroup.add(eye)
     }
 
-    function draw() {
-  const rect = canvas.getBoundingClientRect()
-  const width = rect.width
-  const height = parseFloat(canvas.style.height)
-      ctx.clearRect(0, 0, width, height)
+    // Pozice a rotace prutu
+    rodGroup.position.set(0, 0.2, 0.5)
+    rodGroup.rotation.y = 0.08
 
-      // Background gradient
-      const grad = ctx.createLinearGradient(0, 0, width, height)
-      grad.addColorStop(0, 'rgba(201,191,175,0.25)')
-      grad.addColorStop(1, 'rgba(62,89,63,0.08)')
-      ctx.fillStyle = grad
-      ctx.fillRect(0, 0, width, height)
-
-      // Draw a few tilted "rods" with simple lighting
-      const rods = [
-        { x: width * 0.1, y: height * 0.75, len: width * 0.65, tilt: -0.06, color: '#3E593F' },
-        { x: width * 0.15, y: height * 0.6, len: width * 0.6, tilt: -0.03, color: '#0F2A22' },
-        { x: width * 0.25, y: height * 0.5, len: width * 0.55, tilt: 0.02, color: '#B07A36' },
-      ]
-
-      rods.forEach((r, i) => {
-        ctx.save()
-        ctx.translate(r.x, r.y)
-        ctx.rotate(r.tilt)
-        // Rod body
-        const w = Math.max(3, Math.floor(width * 0.006))
-        const gradRod = ctx.createLinearGradient(0, 0, r.len, 0)
-        gradRod.addColorStop(0, 'rgba(255,255,255,0.6)')
-        gradRod.addColorStop(0.1, r.color)
-        gradRod.addColorStop(1, 'rgba(0,0,0,0.2)')
-        ctx.fillStyle = gradRod
-        ctx.fillRect(0, -w / 2, r.len, w)
-        // Guides
-        ctx.strokeStyle = 'rgba(0,0,0,0.2)'
-        ctx.lineWidth = 1
-        for (let p = r.len * 0.15; p < r.len; p += r.len * 0.15) {
-          ctx.beginPath(); ctx.moveTo(p, -w); ctx.lineTo(p, w); ctx.stroke()
-        }
-        // Reel hint
-        if (i === 1) {
-          ctx.beginPath()
-          ctx.arc(r.len * 0.15, 0, w * 1.8, 0, Math.PI * 2)
-          ctx.fillStyle = 'rgba(176,122,54,0.6)'
-          ctx.fill()
-        }
-        ctx.restore()
-      })
+    scene.add(rodGroup)
+    
+    // Podlaha s reflexí
+    const floorGeometry = new THREE.PlaneGeometry(20, 20)
+    const floorMaterial = new THREE.MeshPhongMaterial({ 
+      color: 0x3e593f,
+      opacity: 0.3,
+      transparent: true
+    })
+    const floor = new THREE.Mesh(floorGeometry, floorMaterial)
+    floor.rotation.x = -Math.PI / 2
+    floor.position.y = -2
+    floor.receiveShadow = true
+    scene.add(floor)
+    
+    camera.position.set(8, 4, 8)
+    camera.lookAt(0, 0, 0)
+    
+    // Animace
+    let frame = 0
+    const animate = () => {
+      frame++
+      
+      // Jemná animace jednoho prutu
+      rodGroup.rotation.y = Math.sin(frame * 0.01) * 0.15 + 0.1
+      rodGroup.rotation.x = Math.sin(frame * 0.008) * 0.07
+      rodGroup.position.y = Math.sin(frame * 0.02) * 0.25
+      rodGroup.rotation.z = Math.sin(frame * 0.015) * 0.06
+      
+      renderer.render(scene, camera)
+      requestAnimationFrame(animate)
     }
-
-    resize()
-    const ro = new ResizeObserver(resize)
-    ro.observe(canvas)
-
-    let anim = 0 as number
-    let t = 0
-    function loop() {
-      anim = requestAnimationFrame(loop)
-      t += 0.008
-      // Subtle parallax tilt
-  canvas.style.transform = `perspective(800px) rotateX(${Math.sin(t) * 1.2}deg) rotateY(${Math.cos(t * 0.7) * 1.2}deg)`
+    
+    // Resize handler
+    const handleResize = () => {
+      const width = mount.clientWidth
+      const height = mount.clientHeight
+      
+      camera.aspect = width / height
+      camera.updateProjectionMatrix()
+      renderer.setSize(width, height)
     }
-    loop()
-
+    
+    window.addEventListener('resize', handleResize)
+    setIsLoaded(true)
+    animate()
+    
     return () => {
-      cancelAnimationFrame(anim)
-      ro.disconnect()
+      window.removeEventListener('resize', handleResize)
+      if (mount.contains(renderer.domElement)) {
+        mount.removeChild(renderer.domElement)
+      }
+      renderer.dispose()
     }
   }, [])
 
   return (
-    <section className="section-padding bg-off-white">
+    <section className="py-20 bg-gradient-to-b from-sand/10 to-off-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-6">
-          <h2 className="text-3xl md:text-5xl font-serif text-dark-forest mb-2">Lehká 3D ukázka</h2>
-          <p className="text-deep-moss">Dynamické zobrazení prutů bez těžké 3D knihovny.</p>
-        </div>
-        <div className="max-w-5xl mx-auto rounded-2xl border border-sand/50 shadow bg-white overflow-hidden will-change-transform">
-          <canvas ref={ref} className="w-full block" aria-label="3D ukázka prutů" />
+        <div className="max-w-6xl mx-auto">
+          <div className="relative bg-gradient-to-br from-emerald-50/50 to-teal-50/30 rounded-3xl border border-sand/30 shadow-2xl overflow-hidden">
+            {!isLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center bg-white/50 backdrop-blur-sm">
+                <div className="text-deep-moss">Načítá se 3D ukázka...</div>
+              </div>
+            )}
+            <div 
+              ref={mountRef} 
+              className="w-full h-96 md:h-[500px] cursor-grab active:cursor-grabbing"
+              style={{ 
+                background: 'linear-gradient(135deg, rgba(240,253,250,0.8) 0%, rgba(209,250,229,0.6) 100%)'
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>

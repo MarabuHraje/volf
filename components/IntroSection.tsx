@@ -8,15 +8,28 @@ export default function IntroSection() {
 
   return (
     <section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-deep-moss via-dark-forest to-dark-forest"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Odlehčené statické vrstvy */}
-      <div className="absolute inset-0 opacity-[0.08] bg-[radial-gradient(circle_at_30%_40%,#B07A36_0%,transparent_65%)]" />
-      <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(circle_at_70%_60%,#3E593F_0%,transparent_70%)]" />
+      {/* Pozadí fotka s filtrem */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ 
+          backgroundImage: "url('/pozadi.jpeg')",
+          filter: 'brightness(0.6) contrast(1.1)'
+        }}
+      />
       
+      {/* Zelený filtr overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-emerald-900/60 via-emerald-800/40 to-teal-900/70 mix-blend-multiply" />
       
-  {/* Jemná zrnitá textura */}
-  <div className="absolute inset-0 opacity-[0.06] mix-blend-overlay" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=http://www.w3.org/2000/svg viewBox=0 0 100 100%3E%3Cfilter id=noise%3E%3CfeTurbulence baseFrequency=.8 numOctaves=4 stitchTiles=stitch/%3E%3C/filter%3E%3Crect width=100%25 height=100%25 filter=url(%23noise)/%3E%3C/svg%3E')" }} />
+      {/* Dramatický vignette efekt */}
+      <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/50" />
+      
+      {/* Jemný dým efekt */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-0 left-1/4 w-64 h-64 bg-emerald-200/30 rounded-full blur-[100px] animate-pulse" />
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-teal-200/20 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '2s' }} />
+      </div>
 
       {/* Enhanced Swimming fish with 3D depth */}
       <div className="absolute inset-0 pointer-events-none">

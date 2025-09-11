@@ -26,13 +26,14 @@ export default function Home() {
     <main className="relative">
       <ScrollSectionsPresence>
         <div id="intro" data-scroll-section><IntroSection /></div>
-        <section id="o-znacce" data-scroll-section><AboutSection /></section>
+  <section id="ukazka-3d" data-scroll-section><ThreeShowcase /></section>
+  <section id="o-znacce" data-scroll-section><AboutSection /></section>
         <section id="sluzby" data-scroll-section><ServicesSection /></section>
         <section id="proc-volf" data-scroll-section><BenefitsSection /></section>
   <section id="ekologie" data-scroll-section><EcologySection /></section>
   <section id="galerie" data-scroll-section><GallerySection /></section>
   <section id="vybava" data-scroll-section><GearTeaserSection enableGearTeaser={enableGearTeaser} /></section>
-  <section id="ukazka-3d" data-scroll-section><ThreeShowcase /></section>
+  
         <section id="blog" data-scroll-section><BlogTeaserSection /></section>
         <section id="partneri" data-scroll-section><PartnersSection /></section>
   <section id="hodnoceni" data-scroll-section><ReviewsSection /></section>

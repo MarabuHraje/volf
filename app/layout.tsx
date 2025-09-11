@@ -88,6 +88,7 @@ export default function RootLayout({
     <html lang="cs" className={`${inter.variable} ${cormorant.variable}`}>
       <head>
         <StructuredData />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
   <body className="font-sans antialiased selection:bg-copper/30 bg-off-white text-dark-forest">
         <ThemeProvider>

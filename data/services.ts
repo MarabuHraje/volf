@@ -19,21 +19,27 @@ export const services: ServiceItem[] = [
     icon: 'wrench-screwdriver'
   },
   {
-    id: 'konzultace',
-    title: 'Konzultace revírů',
-    description: 'Znáte nové místo? Poradíme s taktikou, nástrahou i přípravou na konkrétní vody',
-    icon: 'map'
+    id: 'chovatelstvi',
+    title: 'Chovatelské služby',
+    description: 'Komplexní péče o rybí chovy, projektování jezírek a poradenství při zakládání nových chovů',
+    icon: 'academic-cap'
   },
   {
-    id: 'sestavy',
-    title: 'Příprava sestav',
-    description: 'Sestavíme kompletní výbavu pro váš cílový druh ryb a způsob lovu',
+    id: 'krmiva',
+    title: 'Krmiva a doplňky',
+    description: 'Kvalitní krmiva pro ryby, vitamíny a doplňky stravy pro zdravý růst a vývoj',
     icon: 'squares-2x2'
   },
   {
-    id: 'edukace',
-    title: 'Edukace techniků',
-    description: 'Předáváme praktické znalosti o moderních i tradičních metodách rybolovu',
-    icon: 'academic-cap'
+    id: 'technika',
+    title: 'Chovatelská technika',
+    description: 'Filtrace, provzdušňování, UV lampy a další technické vybavení pro chovy',
+    icon: 'wrench-screwdriver'
+  },
+  {
+    id: 'konzultace',
+    title: 'Konzultace revírů',
+    description: 'Poradíme s taktikou, nástrahou i přípravou na konkrétní vody',
+    icon: 'map'
   }
 ]

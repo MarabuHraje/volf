@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "name": "Jan Novák",
+    "rating": 5,
+    "comment": "Vynikající služby, profesionální přístup a skvělé poradenství při výběru výbavy.",
+    "date": "2024-08-15"
+  },
+  {
+    "id": "2",
+    "name": "Petra Svobodová",
+    "rating": 4,
+    "comment": "Rychlý servis navijáku, rozumné ceny. Určitě doporučuji!",
+    "date": "2024-08-20"
+  },
+  {
+    "id": "3",
+    "name": "Karel Dvořák",
+    "rating": 5,
+    "comment": "Pomohli mi s nastavením chovu kaprů. Odbornost na vysoké úrovni.",
+    "date": "2024-09-01"
+  }
+]
