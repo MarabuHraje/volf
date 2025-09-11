@@ -75,6 +75,10 @@ export const viewport: Viewport = {
   themeColor: '#0f2e1e',
 }
 
+// Dynamic client-only layers
+const Ripple = dynamic(() => import('../components/RippleLayer'), { ssr: false })
+const AnnouncementBar = dynamic(() => import('../components/AnnouncementBar'), { ssr: false })
+
 export default function RootLayout({
   children,
 }: {
@@ -94,15 +98,9 @@ export default function RootLayout({
           </a>
           <Header />
           {/** Oznámení o stavu e‑shopu */}
-          {(() => {
-            const AnnouncementBar = dynamic(() => import('@/components/AnnouncementBar'), { ssr: false })
-            return <AnnouncementBar />
-          })()}
+          <AnnouncementBar />
           {/** Ripple click efekt */}
-          {(() => {
-            const Ripple = dynamic(() => import('@/components/RippleLayer'), { ssr: false })
-            return <Ripple />
-          })()}
+          <Ripple />
           <div className="noise-overlay" />
           {children}
         </ThemeProvider>
