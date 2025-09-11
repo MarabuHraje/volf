@@ -71,7 +71,7 @@ function ServiceCard({ service, index }: { service: ServiceItem; index: number }
 
 export default function ServicesSection() {
   return (
-    <section id="sluzby" className="section-padding bg-gradient-to-b from-sand/10 to-off-white relative overflow-hidden">
+  <section id="sluzby" className="section-padding bg-sand/10 relative overflow-hidden">
       <div className="blur-orb w-72 h-72 -top-10 -left-10" />
       <div className="blur-orb alt w-80 h-80 bottom-0 -right-10" />
       <div className="container mx-auto px-4">

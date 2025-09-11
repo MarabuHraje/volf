@@ -14,15 +14,14 @@ export default function AboutSection() {
           className="max-w-4xl mx-auto text-center"
         >
           <h2 className="text-3xl md:text-5xl font-serif text-dark-forest mb-8">
-            O značce
+            O nás
           </h2>
           
           <div className="prose prose-lg mx-auto text-deep-moss leading-relaxed">
             <p className="text-xl md:text-2xl font-light">
-              Víme, že skutečný rybolov není jen o úlovku, ale o hlubokém spojení s přírodou. 
-              S více než dvacetiletou zkušeností poskytujeme individuální poradenství, kvalitní servis 
-              a pomáháme vám najít tu správnou výbavu. Naším cílem je předávat tradice zodpovědného 
-              rybolovu a budovat komunitu, která respektuje přírodu i jeden druhého.
+              Jsme pár z Českých Budějovic se srdcem pro zvířata a rybářský sport. 
+              V obchodě i u vody se s vámi dělíme o zkušenosti a poradíme s výběrem výbavy, která vám sedne. 
+              Děláme věci jednoduše, s úctou k přírodě a s důrazem na osobní přístup.
             </p>
           </div>
 
@@ -34,8 +33,7 @@ export default function AboutSection() {
             className="mt-12 p-8 bg-gradient-to-r from-olive/10 to-deep-moss/10 rounded-2xl border-l-4 border-copper"
           >
             <blockquote className="text-lg italic text-deep-moss font-medium">
-              &ldquo;Rybolov je umění trpělivosti, respektu a porozumění přírodě. 
-              Každý úlovek je příběh, každý den na vodě je učení.&rdquo;
+              &ldquo;Rybolov je o radosti, klidu a respektu k vodě. Rádi vás tím provedeme.&rdquo;
             </blockquote>
             <cite className="block mt-4 text-sm text-olive font-medium not-italic">
               — Filozofie Volf

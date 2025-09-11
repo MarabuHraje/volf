@@ -21,10 +21,10 @@ export default function GearTeaserSection({ enableGearTeaser = true }: GearTease
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-serif text-dark-forest mb-6">
-            Prémiová výbava
+            Přehled zboží a výbavy
           </h2>
           <p className="text-lg text-deep-moss max-w-2xl mx-auto">
-            Specializujeme se na kvalitní vybavení pro všechny styly rybolovu
+            Náhled našeho krámku a sortimentu pro všechny styly rybolovu
           </p>
         </motion.div>
 

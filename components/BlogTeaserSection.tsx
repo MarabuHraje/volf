@@ -6,7 +6,7 @@ import { fadeInUp, staggerChildren } from '@/lib/motion'
 
 export default function BlogTeaserSection() {
   return (
-    <section id="blog" className="section-padding relative overflow-hidden bg-gradient-to-b from-deep-moss via-dark-forest to-dark-forest">
+  <section id="blog" className="section-padding relative overflow-hidden bg-gradient-to-b from-sand/10 via-off-white to-off-white">
       <div className="blur-orb w-[32rem] h-[32rem] top-10 left-10" />
       <div className="blur-orb alt w-[36rem] h-[36rem] -bottom-20 right-0" />
       <div className="container mx-auto px-4 relative">
@@ -17,10 +17,10 @@ export default function BlogTeaserSection() {
           viewport={{ once: true, amount: 0.3 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-serif text-off-white mb-6">
+          <h2 className="text-3xl md:text-5xl font-serif text-dark-forest mb-6">
             Rady & články
           </h2>
-          <p className="text-lg text-sand/90 max-w-2xl mx-auto">
+          <p className="text-lg text-deep-moss max-w-2xl mx-auto">
             Postřehy, tipy a inspirace z vody i ze servisu. Praktické know-how pro váš růst.
           </p>
         </motion.div>
@@ -37,7 +37,7 @@ export default function BlogTeaserSection() {
               key={post.id}
               variants={fadeInUp}
               custom={index}
-              className="relative group rounded-2xl overflow-hidden bg-white/5 backdrop-blur-md border border-white/10 hover:border-copper/60 transition-all duration-500 gradient-border hover:shadow-[0_8px_40px_-10px_rgba(176,122,54,0.35)] cursor-pointer"
+              className="relative group rounded-2xl overflow-hidden bg-white border border-sand/50 hover:border-copper/60 transition-all duration-500 hover:shadow-[0_8px_40px_-10px_rgba(176,122,54,0.35)] cursor-pointer"
             >
               <div className="aspect-video relative overflow-hidden">
                 <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(176,122,54,0.35),rgba(62,89,63,0.25),rgba(15,42,34,0.6))] opacity-80 group-hover:opacity-100 transition-opacity" />
@@ -54,10 +54,10 @@ export default function BlogTeaserSection() {
                 </div>
               </div>
               <div className="p-6 flex flex-col">
-                <h3 className="text-xl font-serif font-semibold text-off-white mb-3 group-hover:text-copper transition-colors leading-snug">
+                <h3 className="text-xl font-serif font-semibold text-dark-forest mb-3 group-hover:text-copper transition-colors leading-snug">
                   {post.title}
                 </h3>
-                <p className="text-sand/90 leading-relaxed mb-5 line-clamp-4 min-h-[5.5rem]">
+                <p className="text-deep-moss leading-relaxed mb-5 line-clamp-4 min-h-[5.5rem]">
                   {post.excerpt}
                 </p>
                 <div className="flex items-center text-copper font-medium text-sm mt-auto group/link">

@@ -10,22 +10,22 @@ export function generateOrganizationJSONLD() {
     description: 'Expertní rybářské poradenství, servis výbavy a prémiové vybavení pro rybolov s respektem k přírodě.',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '{{ADDRESS}}',
-      addressLocality: '{{CITY}}',
-      postalCode: '{{ZIP}}',
+  streetAddress: siteConfig.address.street,
+  addressLocality: siteConfig.address.city,
+  postalCode: siteConfig.address.zip,
       addressCountry: 'CZ'
     },
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '{{PHONE}}',
-      email: '{{EMAIL}}',
+  telephone: siteConfig.telephone,
+  email: siteConfig.contactEmail,
       contactType: 'customer service',
       availableLanguage: 'Czech'
     },
     sameAs: [
-      '{{FACEBOOK_URL}}',
-      '{{INSTAGRAM_URL}}',
-      '{{YOUTUBE_URL}}'
+  siteConfig.social.facebook,
+  siteConfig.social.instagram,
+  siteConfig.social.youtube
     ]
   }
 }
@@ -36,22 +36,22 @@ export function generateLocalBusinessJSONLD() {
     '@type': 'LocalBusiness',
   name: siteConfig.name,
   url: siteConfig.url,
-    telephone: '{{PHONE}}',
-    email: '{{EMAIL}}',
+    telephone: siteConfig.telephone,
+    email: siteConfig.contactEmail,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '{{ADDRESS}}',
-      addressLocality: '{{CITY}}',
-      postalCode: '{{ZIP}}',
+      streetAddress: siteConfig.address.street,
+      addressLocality: siteConfig.address.city,
+      postalCode: siteConfig.address.zip,
       addressCountry: 'CZ'
     },
     geo: {
       '@type': 'GeoCoordinates',
-      // POZNÁMKA: Doplnit skutečné souřadnice
-      latitude: '50.0755',
-      longitude: '14.4378'
+      // Přibližné souřadnice České Budějovice (centrum)
+      latitude: '48.9747',
+      longitude: '14.4743'
     },
-    openingHours: '{{OPENING_HOURS}}',
+    openingHours: siteConfig.openingHours,
     priceRange: '$$',
     paymentAccepted: 'Cash, Credit Card',
     currenciesAccepted: 'CZK',
@@ -88,18 +88,24 @@ export function generateBreadcrumbJSONLD() {
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'O značce',
+        name: 'O nás',
         item: absoluteUrl('#o-znacce')
       },
       {
         '@type': 'ListItem',
         position: 3,
-        name: 'Služby',
-        item: absoluteUrl('#sluzby')
+        name: 'Galerie',
+        item: absoluteUrl('#galerie')
       },
       {
         '@type': 'ListItem',
         position: 4,
+        name: 'Hodnocení',
+        item: absoluteUrl('#hodnoceni')
+      },
+      {
+        '@type': 'ListItem',
+        position: 5,
         name: 'Kontakt',
         item: absoluteUrl('#kontakt')
       }

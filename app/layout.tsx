@@ -5,6 +5,7 @@ import StructuredData from '@/components/StructuredData'
 import AmbientBackground from '@/components/AmbientBackground'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import dynamic from 'next/dynamic'
+import Header from '@/components/Header'
 
 const inter = Inter({ 
   subsets: ['latin', 'latin-ext'],
@@ -20,8 +21,8 @@ const cormorant = Cormorant_Garamond({
 })
 
 export const metadata: Metadata = {
-  title: 'Rybářské a chovatelské služby Volf - Rybolov s respektem k přírodě',
-  description: 'Expertní rybářské poradenství, servis výbavy a prémiové vybavení pro rybolov s respektem k přírodě. Individuální přístup s více než 20letými zkušenostmi.',
+  title: 'Rybářské a chovatelské služby Volf – moderní a přehledně v Českých Budějovicích',
+  description: 'Jsme pár z Českých Budějovic se srdcem pro zvířata a rybářský sport. Přátelské poradenství, servis a přehledná nabídka výbavy – jednoduše a s respektem k přírodě.',
   keywords: 'rybářské služby, rybářské poradenství, servis rybářské výbavy, rybolov, kaprařina, feeder, spinning, muškařina',
   authors: [{ name: 'Rybářské a chovatelské služby Volf' }],
   creator: 'Rybářské a chovatelské služby Volf',
@@ -36,8 +37,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Rybářské a chovatelské služby Volf - Rybolov s respektem k přírodě',
-    description: 'Specializujeme se na individuální poradenství, profesionální servis a pomáháme najít tu správnou výbavu pro váš styl rybolovu.',
+    title: 'Rybářské a chovatelské služby Volf – moderně a přehledně',
+    description: 'Přátelské poradenství, servis a výbava. Lokálně v Českých Budějovicích s respektem k přírodě.',
     url: 'https://volf-rybarsky-web.vercel.app',
     siteName: 'Rybářské a chovatelské služby Volf',
     locale: 'cs_CZ',
@@ -54,7 +55,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Rybářské a chovatelské služby Volf',
-    description: 'Expertní rybářské poradenství a servis s respektem k přírodě',
+    description: 'Přátelské poradenství a servis. Jednoduše a přehledně.',
     images: ['/images/og-image.jpg'],
   },
   robots: {
@@ -80,9 +81,10 @@ export default function RootLayout({
       <head>
         <StructuredData />
       </head>
-      <body className="font-sans antialiased selection:bg-copper/30 bg-dark-forest text-off-white">
+  <body className="font-sans antialiased selection:bg-copper/30 bg-off-white text-dark-forest">
         <ThemeProvider>
           <AmbientBackground />
+          <Header />
           {/** Ripple click efekt */}
           {(() => {
             const Ripple = dynamic(() => import('@/components/RippleLayer'), { ssr: false })

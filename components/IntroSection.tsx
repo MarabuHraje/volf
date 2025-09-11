@@ -8,7 +8,7 @@ export default function IntroSection() {
 
   return (
     <section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#0f2419] via-[#0c1b14] to-[#050b0a]"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-deep-moss via-dark-forest to-dark-forest"
     >
       {/* Odlehčené statické vrstvy */}
       <div className="absolute inset-0 opacity-[0.08] bg-[radial-gradient(circle_at_30%_40%,#B07A36_0%,transparent_65%)]" />
@@ -81,17 +81,13 @@ export default function IntroSection() {
             className="backdrop-blur-sm bg-white/5 rounded-3xl border border-white/10 p-8 md:p-12 shadow-xl"
           >
             <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.9] font-serif font-light text-white mb-8 text-balance tracking-tight"
+              className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] font-serif font-light text-off-white mb-8 text-balance tracking-tight"
               variants={fadeInUp}
               style={{
-                textShadow: '0 4px 20px rgba(0,0,0,0.3), 0 0 40px rgba(255,255,255,0.1)',
-                background: 'linear-gradient(135deg, #ffffff 0%, #f0f9ff 50%, #e0f2fe 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
+                textShadow: '0 4px 20px rgba(0,0,0,0.25)'
               }}
             >
-              Rybolov s respektem k přírodě
+              Moderní a přehledný rybářský servis
             </motion.h1>
             
             <motion.p 
@@ -99,7 +95,7 @@ export default function IntroSection() {
               variants={fadeInUp}
               custom={1}
             >
-              Expertní poradenství a prémiová výbava pro váš úspěch
+              Přátelsky poradíme a vybavíme. Jednoduše a s respektem k přírodě.
             </motion.p>
             
             <motion.div 
