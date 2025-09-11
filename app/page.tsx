@@ -12,7 +12,8 @@ const GearTeaserSection = dynamic(() => import('@/components/GearTeaserSection')
 const BlogTeaserSection = dynamic(() => import('@/components/BlogTeaserSection'))
 const PartnersSection = dynamic(() => import('@/components/PartnersSection'))
 const FAQSection = dynamic(() => import('@/components/FAQSection'))
-const ContactSection = dynamic(() => import('@/components/ContactSection'))
+// Kontakt sekci dočasně nahrazujeme informacemi o majiteli
+const OwnerInfoSection = dynamic(() => import('@/components/OwnerInfoSection'))
 const GallerySection = dynamic(() => import('@/components/GallerySection'))
 const ReviewsSection = dynamic(() => import('@/components/ReviewsSection'))
 const VisitUsSection = dynamic(() => import('@/components/VisitUsSection'))
@@ -38,7 +39,7 @@ export default function Home() {
   <section id="hodnoceni" data-scroll-section><ReviewsSection /></section>
   <section id="faq" data-scroll-section><FAQSection /></section>
   <section id="navstivte-nas" data-scroll-section><VisitUsSection /></section>
-        <section id="kontakt" data-scroll-section><ContactSection /></section>
+  <section id="o-nas" data-scroll-section><OwnerInfoSection /></section>
         <Footer />
       </ScrollSectionsPresence>
     </main>

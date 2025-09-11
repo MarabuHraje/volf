@@ -1,6 +1,7 @@
 // Central configuration for site-wide constants
 export const siteConfig = {
   name: 'Rybářské a chovatelské služby Volf',
+  tagline: 'Kompletní rybářské a chovatelské vybavení',
   // Prefer explicit env var, fallback to Vercel provided URL or localhost
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://volf-rybarsky-web.vercel.app',
   defaultLocale: 'cs-CZ',
@@ -8,6 +9,10 @@ export const siteConfig = {
   // Display-friendly phone and a tel: safe version
   telephone: '+420 702 100 963',
   telephoneHref: 'tel:+420702100963',
+  owner: {
+    name: 'David Volf',
+    role: 'Podnikatel/ka'
+  },
   address: {
     street: 'Suchomelská 2251',
     city: 'České Budějovice',
@@ -19,7 +24,7 @@ export const siteConfig = {
     facebook: '',
     youtube: ''
   },
-  openingHours: 'Dle domluvy – prosíme volejte předem.',
+  openingHours: 'Po–Ne 8:00–17:00',
   whatsappUrl: 'https://wa.me/420702100963'
 }
 

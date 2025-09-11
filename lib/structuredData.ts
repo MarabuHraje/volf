@@ -51,7 +51,7 @@ export function generateLocalBusinessJSONLD() {
       latitude: '48.9747',
       longitude: '14.4743'
     },
-    openingHours: siteConfig.openingHours,
+  openingHours: siteConfig.openingHours,
     priceRange: '$$',
     paymentAccepted: 'Cash, Credit Card',
     currenciesAccepted: 'CZK',
