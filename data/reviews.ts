@@ -14,15 +14,21 @@ export interface ReviewStats {
 }
 
 // API klient (běží na klientu – používá app route /api/reviews)
+function apiUrl(path: string) {
+  if (typeof window === 'undefined') return path
+  const base = window.location.origin
+  return `${base}${path}`
+}
+
 export async function fetchReviews(): Promise<Review[]> {
-  const res = await fetch('/api/reviews', { cache: 'no-store' })
+  const res = await fetch(apiUrl('/api/reviews'), { cache: 'no-store' })
   if (!res.ok) throw new Error('Nepodařilo se načíst recenze')
   const data: Review[] = await res.json()
   return data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 }
 
 export async function createReview(review: Omit<Review, 'id' | 'date'>): Promise<Review> {
-  const res = await fetch('/api/reviews', {
+  const res = await fetch(apiUrl('/api/reviews'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(review)
