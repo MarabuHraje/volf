@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { promises as fs } from 'fs'
 import path from 'path'
 import os from 'os'
+import { kv } from '@vercel/kv'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -9,6 +10,21 @@ export const dynamic = 'force-dynamic'
 const PRIMARY_DIR = path.join(process.cwd(), 'data')
 const TMP_DIR = path.join(os.tmpdir(), 'volf-data')
 const FILE_NAME = 'reviews.json'
+const KV_LIST_KEY = 'reviews:list'
+const KV_SEQ_KEY = 'reviews:seq'
+
+type Review = {
+  id: string
+  name: string
+  rating: number
+  comment: string
+  date: string
+  email?: string
+}
+
+function isKvConfigured() {
+  return !!(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN)
+}
 
 async function pathExists(p: string) {
   try { await fs.access(p); return true } catch { return false }
@@ -57,6 +73,19 @@ async function writeWithFallback(json: any[]): Promise<string> {
 }
 
 export async function GET() {
+  // Prefer KV v produkci, fallback na soubor lokálně
+  if (isKvConfigured()) {
+    try {
+      const items = await kv.lrange<Review>(KV_LIST_KEY, 0, -1)
+      return new NextResponse(JSON.stringify(items ?? []), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }
+      })
+    } catch (e) {
+      console.error('KV GET failed, falling back to file:', e)
+      // pokračuj na file fallback níže
+    }
+  }
   const { data } = await readFirstAvailable()
   return new NextResponse(JSON.stringify(data), {
     status: 200,
@@ -67,15 +96,41 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { data } = await readFirstAvailable()
-    const newReview = {
-      id: Date.now().toString(),
+    const newReview: Review = {
+      id: '', // doplníme níže
       name: String(body.name || ''),
       rating: Math.max(1, Math.min(5, Number(body.rating) || 5)),
       comment: String(body.comment || ''),
       email: body.email ? String(body.email) : undefined,
       date: new Date().toISOString().split('T')[0],
     }
+
+    if (!newReview.name || !newReview.comment) {
+      return new NextResponse(JSON.stringify({ error: 'Neplatná data recenze' }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }
+      })
+    }
+
+    // Zkusíme KV, jinak spadneme do file fallbacku
+    if (isKvConfigured()) {
+      try {
+        const id = await kv.incr(KV_SEQ_KEY)
+        newReview.id = String(id)
+        await kv.lpush(KV_LIST_KEY, newReview)
+        return new NextResponse(JSON.stringify(newReview), {
+          status: 201,
+          headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }
+        })
+      } catch (e) {
+        console.error('KV POST failed, falling back to file:', e)
+        // pokračuj do fallbacku níže
+      }
+    }
+
+    // File fallback (lokální vývoj nebo KV nedostupné)
+    const { data } = await readFirstAvailable()
+    newReview.id = Date.now().toString()
     const next = [newReview, ...data]
     await writeWithFallback(next)
     return new NextResponse(JSON.stringify(newReview), {

@@ -42,9 +42,9 @@ export default function BenefitsSection() {
     <section id="proc-volf" className="section-padding bg-dark-forest relative overflow-hidden">
       <div className="blur-orb w-80 h-80 -top-10 -right-10" />
       <div className="blur-orb alt w-72 h-72 bottom-0 -left-10" />
-      {/* Background elements */}
+      {/* Background elements (CSS gradient instead of missing image) */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-[url('/images/water-texture.jpg')] bg-cover bg-center" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_65%,rgba(62,89,63,0.18),transparent_60%)]" />
       </div>
       
       <div className="container mx-auto px-4 relative z-10">

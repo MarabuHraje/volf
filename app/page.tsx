@@ -9,13 +9,13 @@ const ServicesSection = dynamic(() => import('@/components/ServicesSection'))
 const BenefitsSection = dynamic(() => import('@/components/BenefitsSection'))
 const EcologySection = dynamic(() => import('@/components/EcologySection'))
 const GearTeaserSection = dynamic(() => import('@/components/GearTeaserSection'))
-const BlogTeaserSection = dynamic(() => import('@/components/BlogTeaserSection'))
 const PartnersSection = dynamic(() => import('@/components/PartnersSection'))
 const FAQSection = dynamic(() => import('@/components/FAQSection'))
 // Kontakt sekci dočasně nahrazujeme informacemi o majiteli
 const OwnerInfoSection = dynamic(() => import('@/components/OwnerInfoSection'))
 const GallerySection = dynamic(() => import('@/components/GallerySection'))
 const ReviewsSection = dynamic(() => import('@/components/ReviewsSection'))
+const DonationsSection = dynamic(() => import('@/components/DonationsSection'))
 const VisitUsSection = dynamic(() => import('@/components/VisitUsSection'))
 
 export default function Home() {
@@ -32,9 +32,9 @@ export default function Home() {
         <section id="proc-volf" data-scroll-section><BenefitsSection /></section>
   <section id="ekologie" data-scroll-section><EcologySection /></section>
   <section id="galerie" data-scroll-section><GallerySection /></section>
+  <section id="sbirky" data-scroll-section><DonationsSection /></section>
   <section id="vybava" data-scroll-section><GearTeaserSection enableGearTeaser={enableGearTeaser} /></section>
   
-        <section id="blog" data-scroll-section><BlogTeaserSection /></section>
         <section id="partneri" data-scroll-section><PartnersSection /></section>
   <section id="hodnoceni" data-scroll-section><ReviewsSection /></section>
   <section id="faq" data-scroll-section><FAQSection /></section>

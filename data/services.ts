@@ -18,12 +18,7 @@ export const services: ServiceItem[] = [
     description: 'Profesionální opravy a údržba prutů, navijáků i další techniky s péčí o detail',
     icon: 'wrench-screwdriver'
   },
-  {
-    id: 'chovatelstvi',
-    title: 'Chovatelské služby',
-    description: 'Komplexní péče o rybí chovy, projektování jezírek a poradenství při zakládání nových chovů',
-    icon: 'academic-cap'
-  },
+  // Položka o rybích chovech odstraněna – nezabýváme se tím
   {
     id: 'krmiva',
     title: 'Krmiva a doplňky',
@@ -31,9 +26,9 @@ export const services: ServiceItem[] = [
     icon: 'squares-2x2'
   },
   {
-    id: 'technika',
-    title: 'Chovatelská technika',
-    description: 'Filtrace, provzdušňování, UV lampy a další technické vybavení pro chovy',
+    id: 'pro-mazlicky',
+    title: 'Pro pejsky a kočky',
+    description: 'Základní potřeby a krmiva pro domácí mazlíčky – pečujeme i o ně',
     icon: 'wrench-screwdriver'
   },
   {

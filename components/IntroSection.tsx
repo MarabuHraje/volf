@@ -100,7 +100,7 @@ export default function IntroSection() {
                 textShadow: '0 4px 20px rgba(0,0,0,0.25)'
               }}
             >
-              Moderní a přehledný rybářský servis
+              Obchod s rybářskými a chovatelskými potřebami
             </motion.h1>
             
             <motion.p 
@@ -108,7 +108,7 @@ export default function IntroSection() {
               variants={fadeInUp}
               custom={1}
             >
-              Přátelsky poradíme a vybavíme. Jednoduše a s respektem k přírodě.
+              Vše pro rybáře i chovatele na jednom místě. Přehledně a s férovými cenami.
             </motion.p>
             
             <motion.div 
@@ -116,11 +116,11 @@ export default function IntroSection() {
               variants={fadeInUp}
               custom={2}
             >
-              <a href="#sluzby" className="btn-primary">
-                <span>Naše služby</span>
+              <a href="#vybava" className="btn-primary">
+                <span>Nabídka zboží</span>
               </a>
-              <a href="#kontakt" className="btn-outline">
-                Napište nám
+              <a href="#o-nas" className="btn-outline">
+                Kontakt
               </a>
             </motion.div>
           </motion.div>

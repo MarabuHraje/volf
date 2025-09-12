@@ -86,7 +86,7 @@ export default function ServicesSection() {
             Naše služby
           </h2>
           <p className="text-lg text-deep-moss max-w-2xl mx-auto">
-            Poskytujeme komplexní služby pro rybolov s důrazem na kvalitu a individuální přístup
+            Jsme obchod s výbavou pro rybáře a základními potřebami pro mazlíčky. Poradíme s výběrem.
           </p>
         </motion.div>
 
@@ -102,15 +102,7 @@ export default function ServicesSection() {
           ))}
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <a href="#kontakt" className="btn-primary">Domluvit konzultaci</a>
-        </motion.div>
+        {/* CTA na kontakt můžeme ponechat jen v hlavičce a v sekci O nás */}
       </div>
     </section>
   )

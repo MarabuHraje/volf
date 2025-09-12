@@ -3,10 +3,15 @@
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerChildren } from '@/lib/motion'
 
-const partners = Array.from({ length: 6 }).map((_, i) => ({
-  id: `partner-${i + 1}`,
-  name: `Partner Logo ${i + 1}`
-}))
+const partners = [
+  { id: 'jogan', name: 'JoGi', src: '/images/suppliers/JoGi_x.png' },
+  // Pro toto logo nastavíme vyšší max-height a plnou opacitu kvůli čitelnosti
+  { id: 'f16', name: 'F16 Brand', src: '/images/suppliers/f16f47d5c7d275f33a9d95de6787404f.png', imgClass: 'max-h-20 md:max-h-24 lg:max-h-28 opacity-100 grayscale-0' },
+  { id: 'jk-animals', name: 'JK Animals', src: '/images/suppliers/jk-animals-logo-velke.svg' },
+  { id: 'juko', name: 'Juko', src: '/images/suppliers/juko-logo.png' },
+  { id: 'rufruf', name: 'RufRuf', src: '/images/suppliers/rufruf-logo-green-animated.svg' },
+  { id: 'shop-logo', name: 'Potřeby Volf', src: '/images/suppliers/logo.svg' }
+]
 
 export default function PartnersSection() {
   return (
@@ -20,10 +25,10 @@ export default function PartnersSection() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-5xl font-serif text-dark-forest mb-6">
-            Spolupráce & komunita
+            Naši dodavatelé
           </h2>
           <p className="text-deep-moss max-w-2xl mx-auto text-lg">
-            Partnerství založené na důvěře, kvalitě a sdíleném respektu k vodě a přírodě.
+            Ověřené značky, které u nás najdete. Loga níže jsou zobrazená jednotně pro čistý vzhled.
           </p>
         </motion.div>
         <motion.div
@@ -38,12 +43,19 @@ export default function PartnersSection() {
               key={p.id}
               variants={fadeInUp}
               custom={i}
-        className="relative group aspect-[3/2] flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-xl border border-sand/50 overflow-hidden"
+        className="relative group aspect-[3/2] flex items-center justify-center bg-white/90 backdrop-blur-sm rounded-xl border border-sand/50 overflow-hidden"
             >
-        <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,rgba(0,0,0,0.04)_0,rgba(0,0,0,0.04)_10px,transparent_10px,transparent_20px)]" />
-        <span className="text-sm font-medium text-deep-moss/70 group-hover:text-deep-moss tracking-wide relative">
-                {p.name}
-              </span>
+        <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,rgba(0,0,0,0.03)_0,rgba(0,0,0,0.03)_10px,transparent_10px,transparent_20px)]" />
+        <div className="relative z-10 p-4 w-full h-full flex items-center justify-center">
+          {/* Konsistentní zobrazení: box pro logo, max-height a grayscale hover */}
+          {/* Pro různé formáty (SVG/PNG/WebP) použijeme img, aby seděla barva/loga */}
+          <img
+            src={p.src}
+            alt={p.name}
+            className={`w-auto object-contain filter transition-all duration-300 grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 ${p.imgClass ?? 'max-h-10 md:max-h-12 lg:max-h-14'}`}
+            loading="lazy"
+          />
+        </div>
             </motion.div>
           ))}
         </motion.div>
