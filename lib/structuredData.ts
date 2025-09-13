@@ -6,8 +6,8 @@ export function generateOrganizationJSONLD() {
     '@type': 'Organization',
   name: siteConfig.name,
   url: siteConfig.url,
-  logo: absoluteUrl('/images/logo.png'),
-    description: 'Expertní rybářské poradenství, servis výbavy a prémiové vybavení pro rybolov s respektem k přírodě.',
+  logo: absoluteUrl('/logo.svg'),
+    description: 'Obchod s rybářským vybavením a chovatelskými potřebami v Českých Budějovicích. Poradíme s výběrem.',
     address: {
       '@type': 'PostalAddress',
   streetAddress: siteConfig.address.street,
@@ -22,11 +22,7 @@ export function generateOrganizationJSONLD() {
       contactType: 'customer service',
       availableLanguage: 'Czech'
     },
-    sameAs: [
-  siteConfig.social.facebook,
-  siteConfig.social.instagram,
-  siteConfig.social.youtube
-    ]
+    sameAs: [siteConfig.social.facebook, siteConfig.social.instagram, siteConfig.social.youtube].filter(Boolean)
   }
 }
 
@@ -55,7 +51,7 @@ export function generateLocalBusinessJSONLD() {
     priceRange: '$$',
     paymentAccepted: 'Cash, Credit Card',
     currenciesAccepted: 'CZK',
-    description: 'Specializujeme se na individuální poradenství, profesionální servis a pomáháme najít tu správnou výbavu pro váš styl rybolovu.'
+    description: 'Rybářské potřeby, kaprařina, feeder, spinning, doplňky a krmiva pro psy a kočky. Přátelské poradenství a pomoc s výběrem.'
   }
 }
 
@@ -88,7 +84,7 @@ export function generateBreadcrumbJSONLD() {
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'O nás',
+        name: 'O značce',
         item: absoluteUrl('#o-znacce')
       },
       {
@@ -106,8 +102,8 @@ export function generateBreadcrumbJSONLD() {
       {
         '@type': 'ListItem',
         position: 5,
-        name: 'Kontakt',
-        item: absoluteUrl('#kontakt')
+        name: 'O nás',
+        item: absoluteUrl('#o-nas')
       }
     ]
   }
@@ -119,7 +115,7 @@ export function generateWebSiteJSONLD() {
     '@type': 'WebSite',
     name: siteConfig.name,
     url: siteConfig.url,
-    description: 'Expertní rybářské poradenství, servis výbavy a prémiové vybavení pro rybolov s respektem k přírodě.',
+    description: 'Obchod s rybářským vybavením a chovatelskými potřebami v Českých Budějovicích. Kaprařina, feeder, spinning, doplňky, krmiva.',
     potentialAction: {
       '@type': 'SearchAction',
       target: absoluteUrl('/search?q={search_term_string}'),

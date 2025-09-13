@@ -1,7 +1,7 @@
 // Central configuration for site-wide constants
 export const siteConfig = {
-  name: 'Rybářské a chovatelské služby Volf',
-  tagline: 'Kompletní rybářské a chovatelské vybavení',
+  name: 'Rybářské a chovatelské potřeby Volf',
+  tagline: 'Obchod s rybářským vybavením a chovatelskými potřebami',
   // Prefer explicit env var, fallback to Vercel provided URL or localhost
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://volf-rybarsky-web.vercel.app',
   defaultLocale: 'cs-CZ',

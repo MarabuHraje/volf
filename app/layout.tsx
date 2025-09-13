@@ -21,12 +21,12 @@ const cormorant = Cormorant_Garamond({
 })
 
 export const metadata: Metadata = {
-  title: 'Rybářské a chovatelské služby Volf – moderní a přehledně v Českých Budějovicích',
-  description: 'Jsme pár z Českých Budějovic se srdcem pro zvířata a rybářský sport. Přátelské poradenství, servis a přehledná nabídka výbavy – jednoduše a s respektem k přírodě.',
-  keywords: 'rybářské služby, rybářské poradenství, servis rybářské výbavy, rybolov, kaprařina, feeder, spinning, muškařina',
-  authors: [{ name: 'Rybářské a chovatelské služby Volf' }],
-  creator: 'Rybářské a chovatelské služby Volf',
-  publisher: 'Rybářské a chovatelské služby Volf',
+  title: 'Rybářské a chovatelské potřeby Volf | České Budějovice',
+  description: 'Obchod s rybářským vybavením a chovatelskými potřebami v Českých Budějovicích. Kaprařina, feeder, spinning, doplňky a krmiva pro psy a kočky. Poradíme s výběrem.',
+  keywords: 'rybářské potřeby, rybářský obchod, rybářské vybavení, chovatelské potřeby, kaprařina, feeder, spinning, doplňky, České Budějovice',
+  authors: [{ name: 'Rybářské a chovatelské potřeby Volf' }],
+  creator: 'Rybářské a chovatelské potřeby Volf',
+  publisher: 'Rybářské a chovatelské potřeby Volf',
   formatDetection: {
     email: false,
     address: false,
@@ -37,10 +37,10 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Rybářské a chovatelské služby Volf – moderně a přehledně',
-    description: 'Přátelské poradenství, servis a výbava. Lokálně v Českých Budějovicích s respektem k přírodě.',
+    title: 'Rybářské a chovatelské potřeby Volf',
+    description: 'Rybářské potřeby a chovatelské zboží v Českých Budějovicích. Přátelské poradenství a pomoc s výběrem.',
     url: 'https://volf-rybarsky-web.vercel.app',
-    siteName: 'Rybářské a chovatelské služby Volf',
+    siteName: 'Rybářské a chovatelské potřeby Volf',
     locale: 'cs_CZ',
     type: 'website',
     images: [
@@ -48,14 +48,14 @@ export const metadata: Metadata = {
         url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Rybářské a chovatelské služby Volf',
+        alt: 'Rybářské a chovatelské potřeby Volf',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Rybářské a chovatelské služby Volf',
-    description: 'Přátelské poradenství a servis. Jednoduše a přehledně.',
+    title: 'Rybářské a chovatelské potřeby Volf',
+    description: 'Rybářské potřeby a chovatelské zboží. Přátelské poradenství a servis.',
     images: ['/images/og-image.jpg'],
   },
   robots: {
