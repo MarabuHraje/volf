@@ -21,7 +21,7 @@ export const benefits: Benefit[] = [
   {
     id: 'kvalita',
     title: 'Prémiová kvalita',
-    description: 'Spolupracujeme pouze se značkami, kterým důvěřujemy',
+    description: 'Spolupracujeme pouze se značkami, kterým důvěřujeme',
     icon: 'star'
   },
   {

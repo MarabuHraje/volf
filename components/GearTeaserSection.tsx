@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { gearCategories } from '@/data/gearCategories'
 import PlaceholderSvg from './PlaceholderSvg'
+import Image from 'next/image'
 
 interface GearTeaserSectionProps {
   enableGearTeaser?: boolean
@@ -44,7 +45,18 @@ export default function GearTeaserSection({ enableGearTeaser = true }: GearTease
               className="group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col"
             >
               <div className="aspect-video relative bg-sand/20">
-                <PlaceholderSvg className="w-full h-full object-cover" aspect="video" label={category.title} />
+                {category.image ? (
+                  <Image
+                    src={category.image}
+                    alt={category.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover"
+                    priority={index < 3}
+                  />
+                ) : (
+                  <PlaceholderSvg className="w-full h-full object-cover" aspect="video" label={category.title} />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-forest/50 via-transparent to-transparent" />
               </div>
               
