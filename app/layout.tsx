@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/og-image.jpg',
+        url: '/pozadi.jpeg',
         width: 1200,
         height: 630,
         alt: 'Rybářské a chovatelské potřeby Volf',
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Rybářské a chovatelské potřeby Volf',
     description: 'Rybářské potřeby a chovatelské zboží. Přátelské poradenství a servis.',
-    images: ['/images/og-image.jpg'],
+  images: ['/pozadi.jpeg'],
   },
   robots: {
     index: true,
