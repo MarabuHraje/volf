@@ -10,7 +10,7 @@ export default function ReviewsSection() {
   const [stats, setStats] = useState<ReviewStats | null>(null)
   const [showAll, setShowAll] = useState(false)
   const [showForm, setShowForm] = useState(false)
-  const [formData, setFormData] = useState({ name: '', rating: 5, comment: '', email: '' })
+  const [formData, setFormData] = useState({ name: '', rating: 5, comment: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
@@ -28,12 +28,11 @@ export default function ReviewsSection() {
     if (!formData.name || !formData.comment) return
     setIsSubmitting(true)
     try {
-      // Uloží na server (JSON soubor přes API) a hned zobrazí na stránce
+      // Uloží na server (PostgreSQL databáze přes API) a hned zobrazí na stránce
       const saved = await createReview({
         name: formData.name,
         rating: formData.rating,
-        comment: formData.comment,
-        email: formData.email
+        comment: formData.comment
       })
       // Přepnout na zobrazení všech a přidat novou recenzi
       setShowAll(true)
@@ -42,7 +41,7 @@ export default function ReviewsSection() {
       const all = await fetchReviews()
       setReviews(all)
       setStats(computeReviewStats(all))
-      setFormData({ name: '', rating: 5, comment: '', email: '' })
+      setFormData({ name: '', rating: 5, comment: '' })
       setShowForm(false)
     } catch (err) {
       setErrorMsg('Odeslání recenze se nepodařilo. Zkuste to prosím znovu za chvíli.')
@@ -219,7 +218,9 @@ export default function ReviewsSection() {
                   <h4 className="font-semibold text-dark-forest">{review.name}</h4>
                   <div className="flex items-center gap-2 mt-1">
                     <StarRating rating={review.rating} size="w-4 h-4" />
-                    <span className="text-sm text-deep-moss">{review.date}</span>
+                    <span className="text-sm text-deep-moss">
+                      {new Date(review.created_at).toLocaleDateString('cs-CZ')}
+                    </span>
                   </div>
                 </div>
               </div>
