@@ -43,8 +43,10 @@ export default function ReviewsSection() {
       setStats(computeReviewStats(all))
       setFormData({ name: '', rating: 5, comment: '' })
       setShowForm(false)
-    } catch (err) {
-      setErrorMsg('Odeslání recenze se nepodařilo. Zkuste to prosím znovu za chvíli.')
+    } catch (err: any) {
+      // Zobrazit jasnou chybovou zprávu z API
+      const errorMessage = err?.message || 'Odeslání recenze se nepodařilo. Zkuste to prosím znovu za chvíli.'
+      setErrorMsg(errorMessage)
     } finally {
       setIsSubmitting(false)
     }

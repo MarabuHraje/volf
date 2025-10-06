@@ -32,7 +32,15 @@ export async function createReview(review: Omit<Review, 'id' | 'created_at'>): P
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(review)
   })
-  if (!res.ok) throw new Error('Nepodařilo se uložit recenzi')
+  if (!res.ok) {
+    // Získej chybovou zprávu z API
+    try {
+      const errorData = await res.json()
+      throw new Error(errorData.error || 'Nepodařilo se uložit recenzi')
+    } catch {
+      throw new Error('Nepodařilo se uložit recenzi')
+    }
+  }
   return res.json()
 }
 
