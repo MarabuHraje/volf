@@ -1,10 +1,9 @@
 export interface Review {
-  id: string
+  id: number
   name: string
   rating: number
   comment: string
-  date: string
-  email?: string
+  created_at: string
 }
 
 export interface ReviewStats {
@@ -24,10 +23,10 @@ export async function fetchReviews(): Promise<Review[]> {
   const res = await fetch(apiUrl('/api/reviews'), { cache: 'no-store' })
   if (!res.ok) throw new Error('Nepodařilo se načíst recenze')
   const data: Review[] = await res.json()
-  return data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  return data.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 }
 
-export async function createReview(review: Omit<Review, 'id' | 'date'>): Promise<Review> {
+export async function createReview(review: Omit<Review, 'id' | 'created_at'>): Promise<Review> {
   const res = await fetch(apiUrl('/api/reviews'), {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
