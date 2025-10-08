@@ -18,6 +18,12 @@ const images = [
   'Obrázek WhatsApp, 2025-09-10 v 12.00.43_cc0d5f75.jpg',
   'Obrázek WhatsApp, 2025-09-10 v 12.00.44_4bf77da4.jpg',
   'Obrázek WhatsApp, 2025-09-10 v 12.00.45_4699b09f.jpg',
+  // Nové obrázky přidané 2025-10-08
+  'WhatsApp Image 2025-10-08 at 09.27rfrfwrfw.44 (1).jpeg',
+  'WhatsApp Image 2025-10-08 at 0gegeg9.27.44.jpeg',
+  'WhatsApp Image 2025-10-08 at 09.27.43ergeg (2).jpeg',
+  'WhatsApp Image 2025-10-08 at 09.27ergerg.43 (1).jpeg',
+  'gergwgwgrwgrw.jpeg',
 ].map((name) => ({ src: `/images/gallery/${name}`, alt: 'Galerie – prodejna a vybavení' }))
 
 export default function GallerySection() {
