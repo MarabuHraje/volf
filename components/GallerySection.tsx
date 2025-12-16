@@ -24,6 +24,12 @@ const images = [
   'WhatsApp Image 2025-10-08 at 09.27.43ergeg (2).jpeg',
   'WhatsApp Image 2025-10-08 at 09.27ergerg.43 (1).jpeg',
   'gergwgwgrwgrw.jpeg',
+  // Nové obrázky přidané 2025-12-16
+  'WhatsApp Image 2025-12-15 at 10.00.50 (1).jpeg',
+  'WhatsApp Image 2025-12-15 at 10.00.50.jpeg',
+  'WhatsApp Image 2025-12-15 at 10.00.51 (1).jpeg',
+  'WhatsApp Image 2025-12-15 at 10.00.51 (2).jpeg',
+  'WhatsApp Image 2025-12-15 at 10.00.51.jpeg',
 ].map((name) => ({ src: `/images/gallery/${name}`, alt: 'Galerie – prodejna a vybavení' }))
 
 export default function GallerySection() {
