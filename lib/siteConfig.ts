@@ -24,7 +24,7 @@ export const siteConfig = {
     facebook: '',
     youtube: ''
   },
-  openingHours: 'Po–Ne 8:00–17:00',
+  openingHours: 'Pondělí–sobota 9:00–18:00, neděle 9:00–14:00',
   whatsappUrl: 'https://wa.me/420702100963'
 }
 
