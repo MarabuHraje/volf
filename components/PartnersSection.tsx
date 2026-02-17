@@ -10,6 +10,9 @@ const partners = [
   { id: 'jk-animals', name: 'JK Animals', src: '/images/suppliers/jk-animals-logo-velke.svg' },
   { id: 'juko', name: 'Juko', src: '/images/suppliers/juko-logo.png' },
   { id: 'rufruf', name: 'RufRuf', src: '/images/suppliers/rufruf-logo-green-animated.svg' },
+  { id: 'jetfish', name: 'Jet Fish', src: '/images/suppliers/jetfish-logo.png' },
+  { id: 'nikl', name: 'Nikl', src: '/images/suppliers/nikl-logo.svg' },
+  { id: 'trakker', name: 'Trakker', src: '/images/suppliers/trakker-logo.svg' },
   { id: 'shop-logo', name: 'Potřeby Volf', src: '/images/suppliers/logo.svg' }
 ]
 
